@@ -1,3 +1,16 @@
 #game-board {
   background-color: lightslategray;
 }
+#board {
+  display: flex;
+}
+.letter {
+  margin: 0.25rem;
+  background-color: black;
+  color: white;
+  width: 2rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -4,6 +4,7 @@ import LandingPage from "./Components/LandingPage/LandingPage";
 import "./CSSReset.css";
 import "./App.css";
 import "./Layout.css";
+import "./Components/GameBoard/GameBoard.css";
 import "./Components/Dashboard/Dashboard.css";
 import "./Components/Keyboard/Keyboard.css";
 import "./Components/SpinWheel/SpinWheel.css";

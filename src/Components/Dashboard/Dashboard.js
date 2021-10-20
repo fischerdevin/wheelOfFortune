@@ -52,14 +52,8 @@ function Dashboard() {
     const newWord = await randomGamePhrase();
     setgameObject(newWord);
     setsplitWord(newWord.word.split(""));
-    splitDivGen();
   };
 
-  const splitDivGen = async () => {
-    splitWord.map((e) => {
-      return { e };
-    });
-  };
   // =============================================================================================
 
   // function to get key value
@@ -94,11 +88,7 @@ function Dashboard() {
         </div>
       </div>
       <div className="gameboard-container">
-        <GameBoard
-          gameObject={gameObject}
-          splitWord={splitWord}
-          splitDivGen={splitDivGen}
-        />
+        <GameBoard gameObject={gameObject} splitWord={splitWord} />
       </div>
 
       {spin ? (
