@@ -43,6 +43,26 @@ const signInWithGoogle = async () => {
   }
 };
 
+// ==================================================================================================
+// Use for adding words to db
+
+// const len = words.wordArr.length;
+
+// const addwords = async () => {
+//   for (let i = 0; i < len; i++) {
+//     try {
+//       await db.collection("words").doc(words.wordArr[i].gamePhrase).set({
+//         word: words.wordArr[i].gamePhrase,
+//         type: words.wordArr[i].type,
+//         id: i,
+//       });
+//     } catch (err) {
+//       console.error(err);
+//     }
+//   }
+// };
+// ==================================================================================================
+
 const signInWithEmailAndPassword = async (email, password) => {
   try {
     await auth.signInWithEmailAndPassword(email, password);
@@ -82,6 +102,21 @@ const logout = () => {
   auth.signOut();
 };
 
+const randomGamePhrase = async () => {
+  try {
+    const id = Math.floor(Math.random() * 89);
+    let foundWord;
+    const query = await db.collection("words").where("id", "==", id).get();
+
+    query.forEach((doc) => {
+      foundWord = doc.data();
+    });
+    return foundWord;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 export {
   auth,
   db,
@@ -92,4 +127,5 @@ export {
   logout,
   provider,
   storage,
+  randomGamePhrase,
 };

@@ -9,7 +9,7 @@ export default function LandingPage() {
   const [reset, setreset] = useState(false);
 
   return (
-    <div>
+    <div id="homepage">
       <h1>Wheel of Fortune</h1>
 
       {login ? (

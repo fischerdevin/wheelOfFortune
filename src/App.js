@@ -1,8 +1,13 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import LandingPage from "./Components/LandingPage/LandingPage";
-
+import "./CSSReset.css";
 import "./App.css";
+import "./Layout.css";
+import "./Components/Dashboard/Dashboard.css";
+import "./Components/Keyboard/Keyboard.css";
+import "./Components/SpinWheel/SpinWheel.css";
+import "./Components/Setting/Setting.css";
 
 function App() {
   return (

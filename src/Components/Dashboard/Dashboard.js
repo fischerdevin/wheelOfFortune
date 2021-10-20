@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useHistory } from "react-router";
-import "./Dashboard.css";
-import "../Keyboard/Keyboard.css";
-import "../SpinWheel/SpinWheel.css";
+// import "./Dashboard.css";
+// import "../Keyboard/Keyboard.css";
+// import "../SpinWheel/SpinWheel.css";
 import { auth, db } from "../Firebase/firebase";
 import Setting from "../Setting/Setting";
 import settingIcon from "../Logos/settings-icon.png";
 import Keyboard from "../Keyboard/Keyboard";
 import Bank from "../Bank/Bank";
 import SpinWheel from "../SpinWheel/SpinWheel";
+import GameBoard from "../GameBoard/GameBoard";
+import { randomGamePhrase } from "../Firebase/firebase";
 
 function Dashboard() {
   const [user, loading] = useAuthState(auth);
   const [name, setName] = useState("");
   const [guess, setGuess] = useState([]);
+  const [gameWord, setgameWord] = useState({});
 
   const [setting, setSetting] = useState(true);
   const [spin, setSpin] = useState(true);
@@ -39,31 +42,48 @@ function Dashboard() {
     if (loading) return;
     if (!user) return history.replace("/");
     fetchUserName();
+    getRandomPhrase();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, loading]);
 
+  const getRandomPhrase = async () => {
+    const newWord = await randomGamePhrase();
+    setgameWord(newWord);
+  };
+
   function guessValue(e) {
     e.preventDefault();
-    setGuess([e.target.value, ...guess]);
-    console.log(guess);
+    let newGuess = e.target.value;
+    setGuess([...guess, newGuess]);
+    console.log(newGuess);
   }
 
   return (
     <div>
-      <h1>Wheel of Fortune</h1>
+      <div className="header">
+        <div id="title">
+          <h1>Wheel of Fortune</h1>
+        </div>
 
-      {setting ? (
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            setSetting(false);
-          }}
-        >
-          <img src={settingIcon} alt="" style={{ width: "25px" }} />
-        </button>
-      ) : (
-        <Setting setSetting={setSetting} />
-      )}
+        <div id="setting-area">
+          {setting ? (
+            <button
+              id="setting-icon"
+              onClick={(e) => {
+                e.preventDefault();
+                setSetting(false);
+              }}
+            >
+              <img src={settingIcon} alt="" style={{ width: "25px" }} />
+            </button>
+          ) : (
+            <Setting setSetting={setSetting} />
+          )}
+        </div>
+      </div>
+      <div className="gameboard-container">
+        <GameBoard gameWord={gameWord} />
+      </div>
 
       {spin ? (
         <div id="spinwheel-container">
@@ -91,7 +111,7 @@ function Dashboard() {
         </div>
       )}
 
-      <div className="container-b">
+      <div id="footer">
         <Bank name={name} />
       </div>
     </div>

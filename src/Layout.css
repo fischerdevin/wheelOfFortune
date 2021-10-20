@@ -1,0 +1,34 @@
+.header {
+  background-color: crimson;
+  height: 10vh;
+  display: flex;
+  justify-content: space-between;
+}
+
+.gameboard-container {
+  background-color: lightblue;
+  height: 40vh;
+}
+
+#spinwheel-container {
+  background-color: lightgreen;
+  height: 35vh;
+}
+
+#keyboard-container {
+  background-color: lightgreen;
+  height: 35vh;
+}
+
+#footer {
+  background-color: lightpink;
+  width: 100%;
+  height: 15vh;
+  position: relative;
+}
+
+/* used on setting.js */
+.column {
+  display: flex;
+  flex-direction: column;
+}
