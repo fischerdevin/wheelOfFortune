@@ -105,9 +105,9 @@ function Dashboard() {
     finalPhrase = finalPhrase.toLowerCase();
 
     if (check === finalPhrase) {
-      alert("nice coc matt");
+      alert("Correct");
     } else {
-      alert("dumbass");
+      alert("Time to spin again");
       setSolve(false);
       setSpin(true);
     }
@@ -120,12 +120,17 @@ function Dashboard() {
     let newGuess = e.target.value;
     if (splitWord.includes(newGuess)) {
       setVisableArr([...visableArr, newGuess]);
-      console.log("guess  included");
+      if (visableArr.includes(newGuess)) {
+        alert("already choosen letter");
+      } else {
+        alert("letter revealed");
+      }
     } else {
-      console.log("guess not included");
-      // setSpin(true);
+      alert("guess not included");
+      setSpin(true);
     }
   };
+  console.log(visableArr);
 
   // =============================================================================================
 

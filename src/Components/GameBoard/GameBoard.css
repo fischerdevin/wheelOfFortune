@@ -4,12 +4,24 @@
 #board {
   display: flex;
 }
-.letter {
-  margin: 0.25rem;
-  background-color: black;
-  color: white;
+.visable {
+  margin: 0.1rem;
+  background-color: white;
+  color: black;
   width: 2rem;
   height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hidden {
+  display: none;
+}
+.tile-border {
+  width: 3rem;
+  height: 4rem;
+  background-color: black;
+  margin: 0.25rem;
   display: flex;
   justify-content: center;
   align-items: center;
