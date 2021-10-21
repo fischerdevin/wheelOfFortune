@@ -9,6 +9,7 @@ import "./Components/Dashboard/Dashboard.css";
 import "./Components/Keyboard/Keyboard.css";
 import "./Components/SpinWheel/SpinWheel.css";
 import "./Components/Setting/Setting.css";
+import "./Components/Solve/Solve.css";
 
 function App() {
   return (

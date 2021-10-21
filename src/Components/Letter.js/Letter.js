@@ -1,8 +1,8 @@
 import React from "react";
 
-export default function Letter({ letter, index }) {
+export default function Letter({ letter, index, visable }) {
   return (
-    <div className="letter" id={`letter${index}`}>
+    <div className={visable ? "visable" : "hidden"} id={`letter${index}`}>
       <p className="tile-layout">{letter}</p>
     </div>
   );

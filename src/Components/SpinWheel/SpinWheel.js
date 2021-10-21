@@ -22,11 +22,9 @@ class SpinWheel extends Component {
       color: "white",
       intensity: 0.5,
     });
+    light.position.set(20, 50, 20);
 
-    const ambientLight = new THREE.AmbientLight({
-      color: "white",
-      intensity: 0.1,
-    });
+    const ambientLight = new THREE.AmbientLight("white", 0.5);
 
     scene.add(light, ambientLight);
 
@@ -134,6 +132,8 @@ class SpinWheel extends Component {
         triangle.rotation.z = 0.261799 * i;
         wheel.add(triangle);
       }
+      let cylinder = new THREE.CylinderGeometry(5, 5, 20, 32);
+      wheel.add(cylinder);
     }
 
     createWheel();
@@ -142,12 +142,15 @@ class SpinWheel extends Component {
 
     scene.add(wheel);
 
-    camera.position.z = 40;
+    // camera.position.z = 20;
+    camera.position.z = 30;
+    camera.position.y = -25;
+    camera.rotation.z = 3.1;
 
     var animate = function () {
       requestAnimationFrame(animate);
 
-      wheel.rotation.z -= 0.001;
+      // wheel.rotation.z -= 0.004;
 
       renderer.render(scene, camera);
     };

@@ -8,16 +8,19 @@ import Keyboard from "../Keyboard/Keyboard";
 import Bank from "../Bank/Bank";
 import SpinWheel from "../SpinWheel/SpinWheel";
 import GameBoard from "../GameBoard/GameBoard";
+import Solve from "../Solve/Solve";
 import { randomGamePhrase } from "../Firebase/firebase";
 
 function Dashboard() {
   const [user, loading] = useAuthState(auth);
   const [name, setName] = useState("");
-  const [guess, setGuess] = useState([]);
+  const [visableArr, setVisableArr] = useState([]);
   const [gameObject, setgameObject] = useState({});
   const [splitWord, setsplitWord] = useState([]);
   const [setting, setSetting] = useState(true);
   const [spin, setSpin] = useState(true);
+  const [solve, setSolve] = useState(false);
+  const [solveValue, setsolveValue] = useState("");
 
   const values = [
     "lose",
@@ -47,7 +50,6 @@ function Dashboard() {
   ];
 
   const history = useHistory();
-
   // Firebase auth login
   const fetchUserName = async () => {
     try {
@@ -82,14 +84,50 @@ function Dashboard() {
   };
 
   // =============================================================================================
+  // solve screen function
+  const switchScreen = (e) => {
+    e.preventDefault();
+    setSolve(false);
+  };
 
+  const solveFn = (e) => {
+    e.preventDefault();
+    setsolveValue(e.target.value);
+  };
+
+  const rightOrWrongSolve = (e) => {
+    e.preventDefault();
+    let sv = solveValue;
+    let noPunc = sv.match(/[a-zA-Z ]/g).join("");
+    let check = noPunc.toLowerCase();
+    check = check.replace(/\s{2,}/g, " ");
+    let finalPhrase = gameObject.word;
+    finalPhrase = finalPhrase.toLowerCase();
+
+    if (check === finalPhrase) {
+      alert("nice coc matt");
+    } else {
+      alert("dumbass");
+      setSolve(false);
+      setSpin(true);
+    }
+  };
+
+  // setGuess([...guess, newGuess]);
   // function to get key value
-  function guessValue(e) {
+  const guessValue = (e) => {
     e.preventDefault();
     let newGuess = e.target.value;
-    setGuess([...guess, newGuess]);
-    console.log(newGuess);
-  }
+    if (splitWord.includes(newGuess)) {
+      setVisableArr([...visableArr, newGuess]);
+      console.log("guess  included");
+    } else {
+      console.log("guess not included");
+      // setSpin(true);
+    }
+  };
+
+  // =============================================================================================
 
   return (
     <div>
@@ -115,7 +153,11 @@ function Dashboard() {
         </div>
       </div>
       <div className="gameboard-container">
-        <GameBoard gameObject={gameObject} splitWord={splitWord} />
+        <GameBoard
+          gameObject={gameObject}
+          splitWord={splitWord}
+          visableArr={visableArr}
+        />
       </div>
 
       {spin ? (
@@ -133,6 +175,26 @@ function Dashboard() {
       ) : (
         <div id="keyboard-container">
           <Keyboard guessValue={guessValue} />
+
+          {solve ? (
+            <div>
+              <Solve
+                switchScreen={switchScreen}
+                solveFn={solveFn}
+                rightOrWrongSolve={rightOrWrongSolve}
+              />
+            </div>
+          ) : (
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                setSolve(true);
+              }}
+            >
+              Solve
+            </button>
+          )}
+
           <button
             onClick={(e) => {
               e.preventDefault();
