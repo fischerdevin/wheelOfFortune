@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import * as THREE from "three";
+import { FontLoader } from "three/examples/jsm/loaders/FontLoader";
+import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry";
+import font from "../Logos/chesterfieldregular1634774581.json";
 
 class SpinWheel extends Component {
   componentDidMount() {
@@ -27,8 +30,10 @@ class SpinWheel extends Component {
 
     scene.add(light, ambientLight);
 
-    const length = 16;
-    const width = 2.10644;
+    const length = 16 * 2;
+    const width = 2.10644 * 2;
+    let loader = new FontLoader();
+    let newFont = loader.parse(font);
     const colors = [
       0xffdd02, 0xf96026, 0xc493cb, 0xfda0b2, 0x029781, 0xfe9625, 0x151110,
       0xb3afa3, 0x009984, 0xfde101, 0xf36118, 0x5dbcea, 0xfd8b06, 0xa469bd,
@@ -37,37 +42,38 @@ class SpinWheel extends Component {
     ];
     const values = [
       "lose",
-      800,
-      500,
-      650,
-      500,
-      900,
-      0,
-      5000,
-      500,
-      600,
-      700,
-      600,
-      650,
-      500,
-      700,
-      500,
-      600,
-      550,
-      500,
-      600,
-      0,
-      650,
-      "free",
-      700,
+      "$800",
+      "$500",
+      "$650",
+      "$500",
+      "$900",
+      "Bankrupt",
+      "$5000",
+      "$500",
+      "$600",
+      "$700",
+      "$600",
+      "$650",
+      "$500",
+      "$700",
+      "$500",
+      "$600",
+      "$550",
+      "$500",
+      "$600",
+      "Bankrupt",
+      "$650",
+      "free play",
+      "$700",
     ];
 
     const wheel = new THREE.Group();
 
     function numberTriangle(word) {
-      const numberGeometry = new THREE.TextGeometry(word, {
-        size: 4,
-        height: 1,
+      const numberGeometry = new TextGeometry(word, {
+        font: newFont,
+        size: width,
+        height: 0.25,
       });
       const mats = new THREE.MeshStandardMaterial({ color: "white" });
       const mesh = new THREE.Mesh(numberGeometry, mats);
@@ -76,7 +82,8 @@ class SpinWheel extends Component {
       return mesh;
     }
 
-    function createTriangle(colors) {
+    function createTriangle(colors, value) {
+      const triangleGroup = new THREE.Group();
       const shape = new THREE.Shape();
       shape.moveTo(0, 0);
       shape.lineTo(length, width);
@@ -85,7 +92,7 @@ class SpinWheel extends Component {
 
       const extrudeSettings = {
         steps: 2,
-        depth: 16,
+        depth: 4,
       };
 
       const geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
@@ -93,20 +100,29 @@ class SpinWheel extends Component {
       const mesh = new THREE.Mesh(geometry, material);
 
       mesh.rotation.z = 1.5708;
-      return mesh;
+
+      let word = numberTriangle(value);
+      word.position.z = 4.5;
+      word.position.y = length / 1.7;
+      word.position.x = 1.5;
+
+      triangleGroup.add(mesh, word);
+      return triangleGroup;
     }
 
     function createWheel() {
       for (let i = 0; i < 24; i++) {
-        let triangle = createTriangle(colors[i]);
-        let word = numberTriangle(values[i]);
-        word.position.z = 5;
+        let triangle = createTriangle(colors[i], values[i]);
+
         triangle.rotation.z = 0.261799 * i;
-        wheel.add(triangle, word);
+        wheel.add(triangle);
       }
     }
 
     createWheel();
+
+    wheel.rotation.x = 0;
+
     scene.add(wheel);
 
     camera.position.z = 40;
@@ -114,7 +130,7 @@ class SpinWheel extends Component {
     var animate = function () {
       requestAnimationFrame(animate);
 
-      wheel.rotation.z -= 0.01;
+      // wheel.rotation.z -= 0.01;
 
       renderer.render(scene, camera);
     };
