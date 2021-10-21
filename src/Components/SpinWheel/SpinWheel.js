@@ -41,13 +41,13 @@ class SpinWheel extends Component {
       0xbb87d1, 0x397340, 0x80c8f0,
     ];
     const values = [
-      "lose",
+      "LOSE TURN",
       "$800",
       "$500",
       "$650",
       "$500",
       "$900",
-      "Bankrupt",
+      "BANKRUPT",
       "$5000",
       "$500",
       "$600",
@@ -61,23 +61,22 @@ class SpinWheel extends Component {
       "$550",
       "$500",
       "$600",
-      "Bankrupt",
+      "BANKRUPT",
       "$650",
-      "free play",
+      "FREE PLAY",
       "$700",
     ];
 
     const wheel = new THREE.Group();
 
-    function numberTriangle(word) {
+    function numberTriangle(word, size) {
       const numberGeometry = new TextGeometry(word, {
         font: newFont,
-        size: width,
+        size: size,
         height: 0.25,
       });
       const mats = new THREE.MeshStandardMaterial({ color: "white" });
       const mesh = new THREE.Mesh(numberGeometry, mats);
-      mesh.rotation.z = 1.5708;
 
       return mesh;
     }
@@ -101,12 +100,30 @@ class SpinWheel extends Component {
 
       mesh.rotation.z = 1.5708;
 
-      let word = numberTriangle(value);
-      word.position.z = 4.5;
-      word.position.y = length / 1.7;
-      word.position.x = 1.5;
+      let size;
+      let spacing;
+      let valueArr = value.split("");
+      let numsArr = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+      for (let i = 0; i < valueArr.length; i++) {
+        if (valueArr[i] === "$") {
+          size = width / 1.6;
+          spacing = 5 - i * size;
+        } else if (numsArr.includes(valueArr[i])) {
+          size = width * 0.75;
+          spacing = 5 - i * size * 1.3;
+        } else {
+          size = width / 2;
+          spacing = 5.5 - i * size * 1.1;
+        }
 
-      triangleGroup.add(mesh, word);
+        let word = numberTriangle(valueArr[i], size);
+        word.position.z = 4.5;
+        word.position.y += spacing + 23;
+        word.position.x -= 1.5;
+        triangleGroup.add(word);
+      }
+
+      triangleGroup.add(mesh);
       return triangleGroup;
     }
 
@@ -130,7 +147,7 @@ class SpinWheel extends Component {
     var animate = function () {
       requestAnimationFrame(animate);
 
-      // wheel.rotation.z -= 0.01;
+      wheel.rotation.z -= 0.001;
 
       renderer.render(scene, camera);
     };
