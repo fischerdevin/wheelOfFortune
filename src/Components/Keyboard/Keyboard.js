@@ -51,7 +51,7 @@ export default function Keyboard(props) {
           N
         </button>
         <button className="keys vowel" value="O" onClick={guessValue}>
-          O
+          o
         </button>
         <button className="keys" value="P" onClick={guessValue}>
           P

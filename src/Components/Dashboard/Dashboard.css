@@ -28,4 +28,9 @@
 }
 #title {
   font-size: 3em;
+  color: white;
+  -webkit-text-stroke: 0.2rem black;
+}
+#settingIcon-img {
+  width: 2rem;
 }

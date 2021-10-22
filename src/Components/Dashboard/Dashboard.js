@@ -124,46 +124,42 @@ function Dashboard() {
     }
   };
   // function to get key value
-  let account = 250;
+  let count = 0;
   const guessValue = (e) => {
     e.preventDefault();
     let newGuess = e.target.value;
-    let vowels = [/aeiou/g];
-    let consansts = [/qwrtyplkjhgfdsazxcvbnm/g];
+    // let vowels = "aeiou";
+    // let consansts = "qwrtyplkjhgfdsazxcvbnm";
 
-    if (
-      newGuess.includes(vowels) &&
-      visableArr.includes(splitWord) &&
-      account >= 250
-    ) {
-      alert("You bought a vowel");
-    } else {
-      if (visableArr.includes(splitWord)) {
-        console.log("hit 1 if");
-        alert("congrats you solved");
+    // the if checks if the player guess is in splitWord
+    // then it has an if for if player guess is already been added to previous guesses
+    // if not already clicked then it adds the guess to previous guesses
+
+    if (splitWord.includes(newGuess)) {
+      if (visableArr.includes(newGuess)) {
+        alert("already choosen letter");
+        // setSpin(true)
       } else {
-        if (splitWord.includes(newGuess)) {
-          setVisableArr([...visableArr, newGuess]);
-          if (visableArr.includes(newGuess)) {
-            alert("already choosen letter");
-          } else {
-            alert("letter revealed");
-          }
-        } else {
-          alert("guess not included");
-          setSpin(true);
-        }
+        setVisableArr([...visableArr, newGuess]);
+        alert("letter revealed");
       }
     }
+    // this else hits when the guess is not included inside the word
+    else {
+      alert("guess not included");
+      // setSpin(true);
+    }
   };
-  console.log(visableArr);
+
+  console.log(visableArr, "Array of Guesses");
+  console.log(count, "count of letter revealed ");
   // =============================================================================================
 
   return (
     <div>
       <div className="header">
         <div id="title-container">
-          <h1 id="title">WHEEL OF FORTUNE</h1>
+          <h1 id="title">WHEEL OF FoRTUNE</h1>
         </div>
 
         {setting ? (
@@ -174,12 +170,13 @@ function Dashboard() {
               setSetting(false);
             }}
           >
-            <img src={settingIcon} alt="" style={{ width: "25px" }} />
+            <img id="settingIcon-img" src={settingIcon} alt="" />
           </button>
         ) : (
           <Setting setSetting={setSetting} />
         )}
       </div>
+
       <div className="gameboard-container">
         <GameBoard
           gameObject={gameObject}
@@ -214,12 +211,13 @@ function Dashboard() {
             </div>
           ) : (
             <button
+              id="solveBtn-keyboard"
               onClick={(e) => {
                 e.preventDefault();
                 setSolve(true);
               }}
             >
-              Solve
+              SoLVE THE PHRASE
             </button>
           )}
 

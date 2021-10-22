@@ -1,5 +1,6 @@
 .header {
   background-color: crimson;
+  border-bottom: black 2px solid;
   height: 10vh;
   width: 100%;
   display: flex;
@@ -21,7 +22,6 @@ canvas {
   width: 100%;
 }
 #keyboard-container {
-  position: relative;
   width: 100%;
 }
 

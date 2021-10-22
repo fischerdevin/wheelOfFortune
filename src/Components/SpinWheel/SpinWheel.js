@@ -32,6 +32,7 @@ class SpinWheel extends Component {
     const width = 2.10644 * 2;
     let loader = new FontLoader();
     let newFont = loader.parse(font);
+
     const colors = [
       0xffdd02, 0xf96026, 0xc493cb, 0xfda0b2, 0x029781, 0xfe9625, 0x151110,
       0xb3afa3, 0x009984, 0xfde101, 0xf36118, 0x5dbcea, 0xfd8b06, 0xa469bd,
@@ -73,7 +74,7 @@ class SpinWheel extends Component {
         size: size,
         height: 0.25,
       });
-      const mats = new THREE.MeshStandardMaterial({ color: "white" });
+      const mats = new THREE.MeshStandardMaterial({ color: "black" });
       const mesh = new THREE.Mesh(numberGeometry, mats);
 
       return mesh;

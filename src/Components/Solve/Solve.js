@@ -4,7 +4,7 @@ export default function Solve(props) {
   const { switchScreen, solveFn, rightOrWrongSolve } = props;
   return (
     <div className="solve">
-      <h1>Solve The Phrase</h1>
+      <h1 id="solve-title">Solve The Phrase</h1>
       <div className="top-right">
         <button onClick={switchScreen}>Lose Turn</button>
       </div>

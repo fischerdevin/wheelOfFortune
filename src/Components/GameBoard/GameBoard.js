@@ -24,7 +24,7 @@ export default function GameBoard(props) {
             );
           })}
         </div>
-        <div>{type}</div>
+        <div id="phraseType">{type}</div>
       </div>
     </div>
   );

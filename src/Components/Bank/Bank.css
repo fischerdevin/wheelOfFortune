@@ -1,5 +1,5 @@
 #bank-container {
-  background-color: cornflowerblue;
+  background-color: #3131e4;
   bottom: 0;
   border: 0.2rem solid black;
   justify-content: center;
@@ -8,21 +8,30 @@
   right: 0;
   width: 15rem;
   height: 10vh;
+  z-index: 2;
+  color: white;
+  -webkit-text-stroke: 0.15rem black;
 }
 
 #username {
   background-color: crimson;
+  border: 0.2rem solid black;
   margin: 0.2rem;
   padding: 0.2rem;
   font-size: 1.5em;
 }
 
-#bank {
-  background-color: darkgoldenrod;
+.bank {
   position: absolute;
   bottom: 0;
   right: 0;
-  margin: 0.2rem;
-  font-size: 1.5em;
+  margin: auto;
+  font-size: 2em;
   padding: 0.2rem;
+}
+#bank-container h5 {
+  font-size: 3em;
+  position: absolute;
+  left: 0;
+  bottom: 0;
 }

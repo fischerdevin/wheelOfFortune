@@ -10,6 +10,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  opacity: 85%;
 }
 .top-right {
   position: absolute;
@@ -22,6 +23,13 @@
   font-size: 1.5em;
   margin: 0.25rem;
   padding: 0.25rem;
+}
+#solve-title {
+  color: white;
+  font-size: 3em;
+  position: absolute;
+  top: 0;
+  margin-top: 1rem;
 }
 #input-solve-container,
 #input-solve-container form {
@@ -36,4 +44,15 @@
   border-radius: 1rem;
   padding: 0.25rem;
   margin: 0.5rem;
+}
+#solveBtn-keyboard {
+  width: 20%;
+  height: 3rem;
+  border-radius: 3px;
+  margin-top: 1rem;
+  background-color: lightgray;
+  border: 2px solid black;
+  color: white;
+  font-size: 1.5em;
+  -webkit-text-stroke: 0.1rem black;
 }
