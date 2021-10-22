@@ -132,8 +132,6 @@ class SpinWheel extends Component {
         triangle.rotation.z = 0.261799 * i;
         wheel.add(triangle);
       }
-      let cylinder = new THREE.CylinderGeometry(5, 5, 20, 32);
-      wheel.add(cylinder);
     }
 
     createWheel();
@@ -158,7 +156,7 @@ class SpinWheel extends Component {
     animate();
   }
   render() {
-    return <div ref={(ref) => (this.mount = ref)} />;
+    return <div id="wheel-canvas" ref={(ref) => (this.mount = ref)} />;
   }
 }
 

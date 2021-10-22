@@ -71,9 +71,13 @@ function Dashboard() {
     fetchUserName();
     // Gets random word from db
     getRandomPhrase();
+    resetGuess();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, loading]);
 
+  const resetGuess = () => {
+    setVisableArr([]);
+  };
   // ==========================================================================================
   // this function runs randomGamePhrase a prop thats from firebase.js
 
@@ -119,49 +123,62 @@ function Dashboard() {
       }
     }
   };
-  let count = 0;
-  // setGuess([...guess, newGuess]);
   // function to get key value
+  let account = 250;
   const guessValue = (e) => {
     e.preventDefault();
     let newGuess = e.target.value;
-    if (splitWord.includes(newGuess)) {
-      setVisableArr([...visableArr, newGuess]);
-      if (visableArr.includes(newGuess)) {
-        alert("already choosen letter");
-      } else {
-        alert("letter revealed");
-      }
+    let vowels = [/aeiou/g];
+    let consansts = [/qwrtyplkjhgfdsazxcvbnm/g];
+
+    if (
+      newGuess.includes(vowels) &&
+      visableArr.includes(splitWord) &&
+      account >= 250
+    ) {
+      alert("You bought a vowel");
     } else {
-      alert("guess not included");
-      setSpin(true);
+      if (visableArr.includes(splitWord)) {
+        console.log("hit 1 if");
+        alert("congrats you solved");
+      } else {
+        if (splitWord.includes(newGuess)) {
+          setVisableArr([...visableArr, newGuess]);
+          if (visableArr.includes(newGuess)) {
+            alert("already choosen letter");
+          } else {
+            alert("letter revealed");
+          }
+        } else {
+          alert("guess not included");
+          setSpin(true);
+        }
+      }
     }
   };
-  console.log(count);
+  console.log(visableArr);
   // =============================================================================================
 
   return (
     <div>
       <div className="header">
-        <div id="title">
-          <h1>Wheel of Fortune</h1>
+        <div id="title-container">
+          <h1 id="title">WHEEL OF FORTUNE</h1>
         </div>
 
-        <div id="setting-area">
-          {setting ? (
-            <button
-              id="setting-icon"
-              onClick={(e) => {
-                e.preventDefault();
-                setSetting(false);
-              }}
-            >
-              <img src={settingIcon} alt="" style={{ width: "25px" }} />
-            </button>
-          ) : (
-            <Setting setSetting={setSetting} />
-          )}
-        </div>
+        {setting ? (
+          <button
+            id="setting-icon"
+            onClick={(e) => {
+              e.preventDefault();
+              setSetting(false);
+            }}
+          >
+            <img src={settingIcon} alt="" style={{ width: "25px" }} />
+          </button>
+        ) : (
+          <Setting setSetting={setSetting} />
+        )}
       </div>
       <div className="gameboard-container">
         <GameBoard
@@ -217,9 +234,7 @@ function Dashboard() {
         </div>
       )}
 
-      <div id="footer">
-        <Bank name={name} />
-      </div>
+      <Bank name={name} />
     </div>
   );
 }

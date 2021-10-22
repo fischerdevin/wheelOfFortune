@@ -1,0 +1,8 @@
+@font-face {
+  font-family: "wheeloffortune";
+  src: url(./Components/Logos/SF\ Fortune\ Wheel.ttf);
+}
+body {
+  font-family: "wheeloffortune", sans-serif;
+  background-color: #90e0ef;
+}

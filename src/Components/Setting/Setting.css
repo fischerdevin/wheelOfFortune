@@ -1,9 +1,12 @@
 .setting-page {
   background-color: azure;
   width: 10rem;
-  margin: 0.1rem;
+  margin: 0.25rem;
   height: 20vh;
   border: black 2px solid;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 .settingStyle {
   align-items: center;
@@ -36,4 +39,7 @@
   height: 3rem;
   width: 3rem;
   border: black 2px solid;
+  position: absolute;
+  right: 0;
+  top: 0;
 }

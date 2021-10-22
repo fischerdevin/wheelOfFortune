@@ -1,30 +1,26 @@
 .header {
   background-color: crimson;
   height: 10vh;
+  width: 100%;
   display: flex;
   justify-content: space-between;
 }
 
 .gameboard-container {
-  background-color: lightblue;
-  height: 40vh;
+  height: 50vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #spinwheel-container {
-  background-color: lightgreen;
-  height: 35vh;
+  width: 100%;
 }
 
 #keyboard-container {
-  background-color: lightgreen;
-  height: 35vh;
-}
-
-#footer {
-  background-color: lightpink;
-  width: 100%;
-  height: 15vh;
   position: relative;
+  width: 100%;
 }
 
 /* used on setting.js */

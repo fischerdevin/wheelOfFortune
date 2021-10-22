@@ -23,3 +23,9 @@
 .dashboard div {
   margin-top: 7px;
 }
+#title-container {
+  margin: auto;
+}
+#title {
+  font-size: 3em;
+}

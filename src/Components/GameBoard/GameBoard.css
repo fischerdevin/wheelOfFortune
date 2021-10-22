@@ -1,6 +1,12 @@
 #game-board {
   background-color: lightslategray;
 }
+#board-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+}
 #board {
   display: flex;
 }

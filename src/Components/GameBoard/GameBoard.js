@@ -6,22 +6,25 @@ export default function GameBoard(props) {
 
   const finalWord = gameObject.word;
   // const finalWordPunc = splitWord;
-  const finalType = gameObject.type;
+  let type = gameObject.type;
+
   console.log(finalWord, "finalWord");
   return (
     <div id="game-board">
-      <div id="board">
-        {splitWord.map((letter, index) => {
-          return (
-            <Letter
-              key={index}
-              index={index}
-              letter={letter}
-              visable={visableArr.includes(letter)}
-            />
-          );
-        })}
-        <div>{finalType}</div>
+      <div id="board-container">
+        <div id="board">
+          {splitWord.map((letter, index) => {
+            return (
+              <Letter
+                key={index}
+                index={index}
+                letter={letter}
+                visable={visableArr.includes(letter)}
+              />
+            );
+          })}
+        </div>
+        <div>{type}</div>
       </div>
     </div>
   );
