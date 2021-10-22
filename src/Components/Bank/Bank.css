@@ -13,11 +13,16 @@
 #username {
   background-color: crimson;
   margin: 0.2rem;
+  padding: 0.2rem;
+  font-size: 1.5em;
 }
 
 #bank {
   background-color: darkgoldenrod;
   position: absolute;
   bottom: 0;
-  right: 1rem;
+  right: 0;
+  margin: 0.2rem;
+  font-size: 1.5em;
+  padding: 0.2rem;
 }

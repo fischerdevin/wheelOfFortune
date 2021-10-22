@@ -1,7 +1,7 @@
 .setting-page {
   background-color: azure;
   width: 10rem;
-  margin: 0.25rem;
+  margin: 0.5rem;
   height: 20vh;
   border: black 2px solid;
   position: absolute;
@@ -33,7 +33,7 @@
   border-radius: 1rem;
 }
 #setting-icon {
-  margin: 0.25rem;
+  margin: 0.7rem;
   background-color: white;
   border-radius: 50%;
   height: 3rem;

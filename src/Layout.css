@@ -17,7 +17,9 @@
 #spinwheel-container {
   width: 100%;
 }
-
+canvas {
+  width: 100%;
+}
 #keyboard-container {
   position: relative;
   width: 100%;

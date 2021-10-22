@@ -148,7 +148,7 @@ class SpinWheel extends Component {
     var animate = function () {
       requestAnimationFrame(animate);
 
-      // wheel.rotation.z -= 0.004;
+      wheel.rotation.z -= 0.004;
 
       renderer.render(scene, camera);
     };
