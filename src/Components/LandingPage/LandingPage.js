@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Login from "../Firebase/Login/Login";
 import Register from "../Firebase/Register/Register";
 import Reset from "../Firebase/Reset/Reset";
+import LandingPageTHREE from "../LandingPageTHREE/LandingPageTHREE";
 
 export default function LandingPage() {
   const [login, setlogin] = useState(false);
@@ -11,6 +12,8 @@ export default function LandingPage() {
   return (
     <div id="homepage">
       <h1>Wheel of Fortune</h1>
+
+      <LandingPageTHREE />
 
       {login ? (
         register ? (
