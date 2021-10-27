@@ -12,27 +12,28 @@ export default function LandingPage() {
   return (
     <div id="homepage">
       <LandingPageTHREE />
-
-      {login ? (
-        register ? (
-          <Register setregister={setregister} />
-        ) : reset ? (
-          <Reset setreset={setreset} setregister={setregister} />
+      <div id="container">
+        {login ? (
+          register ? (
+            <Register setregister={setregister} />
+          ) : reset ? (
+            <Reset setreset={setreset} setregister={setregister} />
+          ) : (
+            <Login setreset={setreset} setregister={setregister} />
+          )
         ) : (
-          <Login setreset={setreset} setregister={setregister} />
-        )
-      ) : (
-        <button
-          className="btn"
-          id="start-gameBtn"
-          onClick={(e) => {
-            e.preventDefault();
-            setlogin(true);
-          }}
-        >
-          Start Game
-        </button>
-      )}
+          <button
+            className="btn"
+            id="start-gameBtn"
+            onClick={(e) => {
+              e.preventDefault();
+              setlogin(true);
+            }}
+          >
+            Start Game
+          </button>
+        )}
+      </div>
     </div>
   );
 }

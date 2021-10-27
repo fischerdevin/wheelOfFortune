@@ -26,46 +26,51 @@ function Login(props) {
   return (
     <div className="login">
       <div className="login__container">
-        <input
-          type="text"
-          className="login__textBox"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="E-mail Address"
-        />
-        <input
-          type="password"
-          className="login__textBox"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-        />
-        <button
-          className="login__btn"
-          onClick={() => signInWithEmailAndPassword(email, password)}
-        >
-          Login
-        </button>
-        <button className="login__btn login__google" onClick={signInWithGoogle}>
-          Login with Google
-        </button>
-        <div>
+        <div className="conatiner-login">
+          <input
+            type="text"
+            className="login__textBox"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="E-mail Address"
+          />
+          <input
+            type="password"
+            className="login__textBox"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+          />
+          <button
+            className="login__btn"
+            onClick={() => signInWithEmailAndPassword(email, password)}
+          >
+            Login
+          </button>
+          <button
+            className="login__btn login__google"
+            onClick={signInWithGoogle}
+          >
+            Login with Google
+          </button>
+          <div>
+            <button
+              onClick={(e) => {
+                setreset(true);
+              }}
+            >
+              Forgot Password
+            </button>
+          </div>
+          <div>Don't have an account?</div>
           <button
             onClick={(e) => {
-              setreset(true);
+              setregister(true);
             }}
           >
-            Forgot Password
+            Register
           </button>
         </div>
-        <div>Don't have an account?</div>
-        <button
-          onClick={(e) => {
-            setregister(true);
-          }}
-        >
-          Register
-        </button>
       </div>
     </div>
   );

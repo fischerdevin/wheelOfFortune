@@ -18,29 +18,31 @@ function Reset(props) {
 
   return (
     <div className="reset">
-      <div className="reset__container">
-        <input
-          type="text"
-          className="reset__textBox"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="E-mail Address"
-        />
-        <button
-          className="reset__btn"
-          onClick={() => sendPasswordResetEmail(email)}
-        >
-          Send password reset email
-        </button>
-        <div>Don't have an account?</div>
-        <button
-          onClick={(e) => {
-            setreset(false);
-            setregister(true);
-          }}
-        >
-          Register
-        </button>
+      <div className="login__container">
+        <div className="conatiner-login">
+          <input
+            type="text"
+            className="reset__textBox"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="E-mail Address"
+          />
+          <button
+            className="reset__btn"
+            onClick={() => sendPasswordResetEmail(email)}
+          >
+            Send password reset email
+          </button>
+          <div>Don't have an account?</div>
+          <button
+            onClick={(e) => {
+              setreset(false);
+              setregister(true);
+            }}
+          >
+            Register
+          </button>
+        </div>
       </div>
     </div>
   );

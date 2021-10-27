@@ -18,9 +18,11 @@ export default class LandingPageTHREE extends Component {
       1000
     );
     // INIT CAMERA
-    camera.position.x = -10;
-    camera.position.y = 10;
-    camera.position.z = 100;
+    camera.position.x = 0;
+    camera.position.y = 16;
+    camera.position.z = 95;
+
+    camera.rotation.x = -0.1;
 
     // RENDERER
     var renderer = new THREE.WebGLRenderer({ alpha: true });
@@ -38,9 +40,6 @@ export default class LandingPageTHREE extends Component {
 
     // INIT HEMISPHERE LIGHT
     scene.add(new THREE.AmbientLight(0xffffff, 1));
-
-    // SCENE
-    // scene.background = transparent;
 
     // POINT LIGHT
     const light1 = new THREE.PointLight(0xffffff, 1, 100);
@@ -108,8 +107,6 @@ export default class LandingPageTHREE extends Component {
       const material = new THREE.MeshStandardMaterial({ color: colors });
       const mesh = new THREE.Mesh(geometry, material);
 
-      mesh.rotation.z = 1;
-
       return mesh;
     }
     function createWedges() {
@@ -144,10 +141,10 @@ export default class LandingPageTHREE extends Component {
       light2.position.x = Math.sin(now) * 25;
       light2.position.z = Math.cos(now) * 25;
 
-      // camera.rotation.z = Math.cos(now * 0.75);
+      // camera.rotation.z = Math.cos(now * 0.5);
 
-      wedgeGroup.rotation.z += 0.01;
-      wedgeGrouptwo.rotation.z -= 0.015;
+      // wedgeGroup.rotation.z += 0.01;
+      // wedgeGrouptwo.rotation.z -= 0.012;
 
       requestAnimationFrame(animate);
       renderer.render(scene, camera);

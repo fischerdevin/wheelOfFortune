@@ -39,7 +39,7 @@
 #phraseType {
   color: white;
   font-size: 2em;
-  -webkit-text-stroke: 0.15rem black;
+  -webkit-text-stroke: 2px black;
 }
 .space {
   background-image: url("../Logos/tile.jpg");
