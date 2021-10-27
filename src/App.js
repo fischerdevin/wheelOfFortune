@@ -10,6 +10,7 @@ import "./Components/Keyboard/Keyboard.css";
 import "./Components/SpinWheel/SpinWheel.css";
 import "./Components/Setting/Setting.css";
 import "./Components/Solve/Solve.css";
+import "./Components/LandingPage/LandingPage.css";
 
 function App() {
   return (

@@ -8,12 +8,12 @@ export default class LandingPageTHREE extends Component {
   componentDidMount() {
     // SCENE
     const scene = new THREE.Scene();
-    const length = 16 * 2;
+    const length = 16 * 2.5;
     const width = 2.10644 * 2;
     // CAMERA
     const camera = new THREE.PerspectiveCamera(
-      85,
-      window.innerWidth / window.innerHeight,
+      80,
+      (window.innerWidth * 0.95) / window.innerHeight,
       0.1,
       1000
     );
@@ -23,15 +23,16 @@ export default class LandingPageTHREE extends Component {
     camera.position.z = 100;
 
     // RENDERER
-    var renderer = new THREE.WebGLRenderer();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    var renderer = new THREE.WebGLRenderer({ alpha: true });
+    renderer.setClearColor(0x000000, 0);
+    renderer.setSize(window.innerWidth * 0.95, window.innerHeight);
     this.mount.appendChild(renderer.domElement);
 
     // RESIZE HAMDLER
     function onWindowResize() {
-      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.aspect = (window.innerWidth * 0.95) / window.innerHeight;
       camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setSize(window.innerWidth * 0.95, window.innerHeight);
     }
     window.addEventListener("resize", onWindowResize);
 
@@ -39,7 +40,7 @@ export default class LandingPageTHREE extends Component {
     scene.add(new THREE.AmbientLight(0xffffff, 1));
 
     // SCENE
-    scene.background = new THREE.Color(0x9d5e90);
+    // scene.background = transparent;
 
     // POINT LIGHT
     const light1 = new THREE.PointLight(0xffffff, 1, 100);
@@ -69,9 +70,14 @@ export default class LandingPageTHREE extends Component {
       bevelOffset: -0.2,
       bevelSegments: 8,
     });
-    let colors = [0xa224f4, 0xa10c3c, 0xe19600, 0x0319d1, 0xa10c3c, 0x038c20];
+    // 0xa224f4 purple//0xa10c3c red //0x038c20 green //0x0319d1 blue // 0xe19600 orange
+    let colors = [
+      0xa224f4, 0xa10c3c, 0x038c20, 0x0319d1, 0xe19600, 0xa224f4, 0xa10c3c,
+      0x038c20, 0x0319d1, 0xe19600,
+    ];
     let colorstwo = [
-      0x038c20, 0xa10c3c, 0x0319d1, 0xe19600, 0xa10c3c, 0xa224f4,
+      0xe19600, 0x0319d1, 0x038c20, 0xa10c3c, 0xa224f4, 0xe19600, 0x0319d1,
+      0x038c20, 0xa10c3c, 0xa224f4,
     ];
     const textMesh = new THREE.Mesh(text, [
       new THREE.MeshPhongMaterial({ color: 0xffffff }),
@@ -84,12 +90,13 @@ export default class LandingPageTHREE extends Component {
     const wedgeGroup = new THREE.Group();
     const wedgeGrouptwo = new THREE.Group();
     const mainGroup = new THREE.Group();
+    let size = [1.7, 1.9, 1.6, 1.8, 1.7, 1.9, 1.6, 1.8, 1.7, 1.6];
 
-    function createWedge(colors) {
+    function createWedge(colors, size) {
       const shape = new THREE.Shape();
       shape.moveTo(0, 0);
-      shape.lineTo(length * 1.75, width * 3.5);
-      shape.lineTo(length * 1.75, -width * 3.5);
+      shape.lineTo(length * size, width * 3);
+      shape.lineTo(length * size, -width * 3);
       shape.lineTo(0, 0);
 
       const extrudeSettings = {
@@ -106,13 +113,13 @@ export default class LandingPageTHREE extends Component {
       return mesh;
     }
     function createWedges() {
-      for (let i = 0; i < 6; i++) {
-        let triangle = createWedge(colors[i]);
-        triangle.rotation.z = 1 * i;
+      for (let i = 0; i < 10; i++) {
+        let triangle = createWedge(colors[i], size[i]);
+        triangle.rotation.z = 0.6 * i;
         wedgeGroup.add(triangle);
-        for (let j = 0; j < 5; j++) {
-          let triangle = createWedge(colorstwo[j]);
-          triangle.rotation.z = 1.2 * j;
+        for (let j = 0; j < 10; j++) {
+          let triangle = createWedge(colorstwo[j], size[j]);
+          triangle.rotation.z = 0.6 * j;
 
           wedgeGrouptwo.add(triangle);
         }
@@ -124,15 +131,6 @@ export default class LandingPageTHREE extends Component {
     wedgeGrouptwo.position.x = 0;
     mainGroup.add(wedgeGroup, wedgeGrouptwo);
     scene.add(mainGroup);
-
-    const geometry = new THREE.CircleGeometry(70, 32);
-    const material = new THREE.MeshBasicMaterial({ color: 0xffff00 });
-    const circle = new THREE.Mesh(geometry, material);
-    scene.add(circle);
-
-    circle.position.z = -10;
-    circle.position.x = 0;
-    circle.position.y = 0;
 
     createWedges();
     // ANIMATE
@@ -148,15 +146,17 @@ export default class LandingPageTHREE extends Component {
 
       // camera.rotation.z = Math.cos(now * 0.75);
 
-      wedgeGroup.rotation.z += 0.015;
+      wedgeGroup.rotation.z += 0.01;
       wedgeGrouptwo.rotation.z -= 0.015;
 
       requestAnimationFrame(animate);
       renderer.render(scene, camera);
     }
+
+    renderer.domElement.id = "landingpage-canvas";
     animate();
   }
   render() {
-    return <div ref={(ref) => (this.mount = ref)} />;
+    return <div id="landingPage-container" ref={(ref) => (this.mount = ref)} />;
   }
 }

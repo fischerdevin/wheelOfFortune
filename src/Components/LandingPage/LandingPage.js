@@ -23,6 +23,8 @@ export default function LandingPage() {
         )
       ) : (
         <button
+          className="btn"
+          id="start-gameBtn"
           onClick={(e) => {
             e.preventDefault();
             setlogin(true);
