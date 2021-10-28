@@ -1,91 +1,331 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Keyboard.css";
 
 export default function Keyboard(props) {
   const { guessValue } = props;
+  const [click, setClick] = useState({
+    A: true,
+    B: true,
+    C: true,
+    D: true,
+    E: true,
+    F: true,
+    G: true,
+    H: true,
+    I: true,
+    J: true,
+    K: true,
+    L: true,
+    M: true,
+    N: true,
+    O: true,
+    P: true,
+    Q: true,
+    R: true,
+    S: true,
+    T: true,
+    U: true,
+    V: true,
+    W: true,
+    X: true,
+    Y: true,
+    Z: true,
+  });
+
   return (
     <>
       <div className="keyboard">
-        <button className="keys vowel" value="A" onClick={guessValue}>
+        <button
+          className={click.A ? "keys vowel" : "displayNone"}
+          value="A"
+          onClick={(e) => {
+            e.preventDefault();
+            setClick({ ...click, A: false });
+            guessValue(e);
+          }}
+        >
           A
         </button>
-        <button className="keys" value="B" onClick={guessValue}>
+        <button
+          className={click.B ? "keys" : "displayNone"}
+          value="B"
+          onClick={(e) => {
+            e.preventDefault();
+            setClick({ ...click, B: false });
+            guessValue(e);
+          }}
+        >
           B
         </button>
-        <button className="keys" value="C" onClick={guessValue}>
+        <button
+          className={click.C ? "keys" : "displayNone"}
+          value="C"
+          onClick={(e) => {
+            e.preventDefault();
+            setClick({ ...click, C: false });
+            guessValue(e);
+          }}
+        >
           C
         </button>
-        <button className="keys" value="D" onClick={guessValue}>
+        <button
+          className={click.D ? "keys" : "displayNone"}
+          value="D"
+          onClick={(e) => {
+            e.preventDefault();
+            setClick({ ...click, D: false });
+            guessValue(e);
+          }}
+        >
           D
         </button>
-        <button className="keys vowel" value="E" onClick={guessValue}>
+        <button
+          className={click.E ? "keys vowel" : "displayNone"}
+          value="E"
+          onClick={(e) => {
+            e.preventDefault();
+            setClick({ ...click, E: false });
+            guessValue(e);
+          }}
+        >
           E
         </button>
-        <button className="keys" value="F" onClick={guessValue}>
+        <button
+          className={click.F ? "keys" : "displayNone"}
+          value="F"
+          onClick={(e) => {
+            e.preventDefault();
+            setClick({ ...click, F: false });
+            guessValue(e);
+          }}
+        >
           F
         </button>
-        <button className="keys" value="G" onClick={guessValue}>
+        <button
+          className={click.G ? "keys" : "displayNone"}
+          value="G"
+          onClick={(e) => {
+            e.preventDefault();
+            setClick({ ...click, G: false });
+            guessValue(e);
+          }}
+        >
           G
         </button>
-        <button className="keys" value="H" onClick={guessValue}>
+        <button
+          className={click.H ? "keys" : "displayNone"}
+          value="H"
+          onClick={(e) => {
+            e.preventDefault();
+            setClick({ ...click, H: false });
+            guessValue(e);
+          }}
+        >
           H
         </button>
-        <button className="keys vowel" value="I" onClick={guessValue}>
+        <button
+          className={click.I ? "keys vowel" : "displayNone"}
+          value="I"
+          onClick={(e) => {
+            e.preventDefault();
+            setClick({ ...click, I: false });
+            guessValue(e);
+          }}
+        >
           I
         </button>
-        <button className="keys" value="J" onClick={guessValue}>
+        <button
+          className={click.J ? "keys" : "displayNone"}
+          value="J"
+          onClick={(e) => {
+            e.preventDefault();
+            setClick({ ...click, J: false });
+            guessValue(e);
+          }}
+        >
           J
         </button>
       </div>
       <div className="keyboard">
-        <button className="keys" value="K" onClick={guessValue}>
+        <button
+          className={click.K ? "keys" : "displayNone"}
+          value="K"
+          onClick={(e) => {
+            e.preventDefault();
+            setClick({ ...click, K: false });
+            guessValue(e);
+          }}
+        >
           K
         </button>
-        <button className="keys" value="L" onClick={guessValue}>
+        <button
+          className={click.L ? "keys" : "displayNone"}
+          value="L"
+          onClick={(e) => {
+            e.preventDefault();
+            setClick({ ...click, L: false });
+            guessValue(e);
+          }}
+        >
           L
         </button>
-        <button className="keys" value="M" onClick={guessValue}>
+        <button
+          className={click.M ? "keys" : "displayNone"}
+          value="M"
+          onClick={(e) => {
+            e.preventDefault();
+            setClick({ ...click, M: false });
+            guessValue(e);
+          }}
+        >
           M
         </button>
-        <button className="keys" value="N" onClick={guessValue}>
+        <button
+          className={click.N ? "keys" : "displayNone"}
+          value="N"
+          onClick={(e) => {
+            e.preventDefault();
+            setClick({ ...click, N: false });
+            guessValue(e);
+          }}
+        >
           N
         </button>
-        <button className="keys vowel" value="O" onClick={guessValue}>
+        <button
+          className={click.O ? "keys vowel" : "displayNone"}
+          value="O"
+          onClick={(e) => {
+            e.preventDefault();
+            setClick({ ...click, O: false });
+            guessValue(e);
+          }}
+        >
           o
         </button>
-        <button className="keys" value="P" onClick={guessValue}>
+        <button
+          className={click.P ? "keys" : "displayNone"}
+          value="P"
+          onClick={(e) => {
+            e.preventDefault();
+            setClick({ ...click, P: false });
+            guessValue(e);
+          }}
+        >
           P
         </button>
-        <button className="keys" value="Q" onClick={guessValue}>
+        <button
+          className={click.Q ? "keys" : "displayNone"}
+          value="Q"
+          onClick={(e) => {
+            e.preventDefault();
+            setClick({ ...click, Q: false });
+
+            guessValue(e);
+          }}
+        >
           Q
         </button>
-        <button className="keys" value="R" onClick={guessValue}>
+        <button
+          className={click.R ? "keys" : "displayNone"}
+          value="R"
+          onClick={(e) => {
+            e.preventDefault();
+            setClick({ ...click, R: false });
+
+            guessValue(e);
+          }}
+        >
           R
         </button>
-        <button className="keys" value="S" onClick={guessValue}>
+        <button
+          className={click.S ? "keys" : "displayNone"}
+          value="S"
+          onClick={(e) => {
+            e.preventDefault();
+            setClick({ ...click, S: false });
+
+            guessValue(e);
+          }}
+        >
           S
         </button>
       </div>
       <div className="keyboard">
-        <button className="keys" value="T" onClick={guessValue}>
+        <button
+          className={click.T ? "keys" : "displayNone"}
+          value="T"
+          onClick={(e) => {
+            e.preventDefault();
+            setClick({ ...click, T: false });
+            guessValue(e);
+          }}
+        >
           T
         </button>
-        <button className="keys vowel" value="U" onClick={guessValue}>
+        <button
+          className={click.U ? "keys vowel" : "displayNone"}
+          value="U"
+          onClick={(e) => {
+            e.preventDefault();
+            setClick({ ...click, U: false });
+            guessValue(e);
+          }}
+        >
           U
         </button>
-        <button className="keys" value="V" onClick={guessValue}>
+        <button
+          className={click.V ? "keys" : "displayNone"}
+          value="V"
+          onClick={(e) => {
+            e.preventDefault();
+            setClick({ ...click, V: false });
+            guessValue(e);
+          }}
+        >
           V
         </button>
-        <button className="keys" value="W" onClick={guessValue}>
+        <button
+          className={click.W ? "keys" : "displayNone"}
+          value="W"
+          onClick={(e) => {
+            e.preventDefault();
+            setClick({ ...click, W: false });
+            guessValue(e);
+          }}
+        >
           W
         </button>
-        <button className="keys" value="X" onClick={guessValue}>
+        <button
+          className={click.X ? "keys" : "displayNone"}
+          value="X"
+          onClick={(e) => {
+            e.preventDefault();
+            setClick({ ...click, X: false });
+            guessValue(e);
+          }}
+        >
           X
         </button>
-        <button className="keys" value="Y" onClick={guessValue}>
+        <button
+          className={click.Y ? "keys" : "displayNone"}
+          value="Y"
+          onClick={(e) => {
+            e.preventDefault();
+            setClick({ ...click, Y: false });
+            guessValue(e);
+          }}
+        >
           Y
         </button>
-        <button className="keys" value="Z" onClick={guessValue}>
+        <button
+          className={click.Z ? "keys" : "displayNone"}
+          value="Z"
+          onClick={(e) => {
+            e.preventDefault();
+            setClick({ ...click, Z: false });
+            guessValue(e);
+          }}
+        >
           Z
         </button>
       </div>

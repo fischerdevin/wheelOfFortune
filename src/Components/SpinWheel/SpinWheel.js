@@ -72,11 +72,17 @@ class SpinWheel extends Component {
       const numberGeometry = new TextGeometry(word, {
         font: newFont,
         size: size,
-        height: 0.25,
+        height: 0.5,
+        bevelEnabled: true,
+        bevelThickness: 0.3,
+        bevelSize: 0.1,
+        bevelSegments: 8,
       });
-      const mats = new THREE.MeshStandardMaterial({ color: "black" });
-      const mesh = new THREE.Mesh(numberGeometry, mats);
 
+      const mesh = new THREE.Mesh(numberGeometry, [
+        new THREE.MeshStandardMaterial({ color: 0x000000 }),
+        new THREE.MeshPhongMaterial({ color: 0xffffff }),
+      ]);
       return mesh;
     }
 

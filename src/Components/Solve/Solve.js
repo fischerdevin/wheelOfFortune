@@ -4,13 +4,15 @@ export default function Solve(props) {
   const { switchScreen, solveFn, rightOrWrongSolve } = props;
   return (
     <div className="solve">
-      <h1 id="solve-title">Solve The Phrase</h1>
-      <div className="top-right">
-        <button onClick={switchScreen}>Lose Turn</button>
+      <div className="header" id="solveHeader">
+        <h1 id="solve-title">Solve The Phrase</h1>
+        <div className="top-right">
+          <button onClick={switchScreen}>Lose Turn</button>
+        </div>
       </div>
       <div id="input-solve-container">
         <form>
-          <input type="text" onChange={solveFn} />
+          <input id="solveInput" type="text" onChange={solveFn} />
           <button onClick={rightOrWrongSolve} id="solveBtn">
             Solve Puzzle
           </button>

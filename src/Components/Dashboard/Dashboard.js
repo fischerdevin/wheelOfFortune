@@ -141,7 +141,7 @@ function Dashboard() {
 
   // function to get key value
   const guessValue = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     let newGuess = e.target.value;
     let vowels = /[AEIOU]/g;
     let consonant = /[BCDFGHJKLMNPQRSTVWXYZ]/g;
@@ -169,6 +169,7 @@ function Dashboard() {
       alert("Letter Not Included");
     }
   };
+
   // =============================================================================================
 
   return (
