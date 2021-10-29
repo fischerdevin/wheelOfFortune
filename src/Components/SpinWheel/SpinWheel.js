@@ -36,9 +36,9 @@ const SpinWheel = (props) => {
     const width = 2.10644 * 2;
     let loader = new FontLoader();
     let newFont = loader.parse(font);
-
+    //  0xffdd02
     const colors = [
-      0xffdd02, 0xf96026, 0xc493cb, 0xfda0b2, 0x029781, 0xfe9625, 0x151110,
+      0xffffff, 0xf96026, 0xc493cb, 0xfda0b2, 0x029781, 0xfe9625, 0x151110,
       0xb3afa3, 0x009984, 0xfde101, 0xf36118, 0x5dbcea, 0xfd8b06, 0xa469bd,
       0xfadc00, 0xf78da7, 0xfa4e1e, 0x49b8ef, 0x048c76, 0xf3a5b5, 0x1b1716,
       0xbb87d1, 0x397340, 0x80c8f0,
@@ -85,7 +85,7 @@ const SpinWheel = (props) => {
 
       const mesh = new THREE.Mesh(numberGeometry, [
         new THREE.MeshStandardMaterial({ color: 0x000000 }),
-        new THREE.MeshPhongMaterial({ color: 0xffffff }),
+        new THREE.MeshStandardMaterial({ color: 0xffffff }),
       ]);
       return mesh;
     }
@@ -147,7 +147,7 @@ const SpinWheel = (props) => {
 
     createWheel();
 
-    // wheel.rotation.x = -0.25;
+    wheel.rotation.z += Math.PI;
 
     scene.add(wheel);
 
@@ -161,10 +161,10 @@ const SpinWheel = (props) => {
       requestAnimationFrame(animate);
 
       if (totalRotation > spinDeg) {
-        wheel.rotation.z += 0;
+        wheel.rotation.z -= 0;
         totalRotation += 0;
       } else {
-        wheel.rotation.z += 0.08;
+        wheel.rotation.z -= 0.08;
         totalRotation += 0.08;
       }
       renderer.render(scene, camera);

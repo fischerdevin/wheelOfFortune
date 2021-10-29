@@ -112,10 +112,10 @@ function Dashboard() {
   checkValue = [...visableArr].sort().join("");
 
   useEffect(() => {
-    if (checkKey === checkValue) {
-      alert("Phrase Done");
-    } else {
-      return;
+    if (checkKey.length > 0) {
+      if (checkKey === checkValue) {
+        alert("Phrase Done");
+      }
     }
   }, [checkKey, checkValue]);
 
@@ -150,10 +150,11 @@ function Dashboard() {
     }
   };
   const getSpinDeg = () => {
-    let spinDeg = Math.floor(Math.random() * 360 + 3600);
-    let actual = Math.floor((spinDeg / 180) * Math.PI);
+    let spinDeg = Math.floor(Math.random() * 360 + 1800);
+    let actual = (spinDeg / 180) * Math.PI;
     setSpinDeg(actual);
-    let spinIndex = Math.floor((spinDeg - 3600) / 15);
+    let spinIndex = Math.floor((spinDeg - 1800) / 15);
+    console.log(spinIndex);
     setspinAmount(values[spinIndex]);
     console.log(values[spinIndex]);
   };
