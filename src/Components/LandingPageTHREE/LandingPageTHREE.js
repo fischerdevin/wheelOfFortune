@@ -143,8 +143,8 @@ export default class LandingPageTHREE extends Component {
 
       // camera.rotation.z = Math.cos(now * 0.5);
 
-      // wedgeGroup.rotation.z += 0.01;
-      // wedgeGrouptwo.rotation.z -= 0.012;
+      // wedgeGroup.rotation.z += 0.009;
+      // wedgeGrouptwo.rotation.z -= 0.0099;
 
       requestAnimationFrame(animate);
       renderer.render(scene, camera);

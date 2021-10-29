@@ -21,32 +21,12 @@ function Dashboard() {
   const [splitWord, setsplitWord] = useState([]);
   const [solveValue, setsolveValue] = useState("");
   const [bank, setbank] = useState(0);
+  const [spinDeg, setSpinDeg] = useState(0);
+  const [spinAmount, setspinAmount] = useState(0);
 
   const values = [
-    "lose",
-    800,
-    500,
-    650,
-    500,
-    900,
-    0,
-    5000,
-    500,
-    600,
-    700,
-    600,
-    650,
-    500,
-    700,
-    500,
-    600,
-    550,
-    500,
-    600,
-    0,
-    650,
-    "free",
-    700,
+    -1, 800, 500, 650, 500, 900, 0, 5000, 500, 600, 700, 600, 650, 500, 700,
+    500, 600, 550, 500, 600, 0, 650, 1, 700,
   ];
 
   const history = useHistory();
@@ -156,7 +136,7 @@ function Dashboard() {
           alert("Letter Revealed");
         } else if (newGuess.match(consonant)) {
           await setVisableArr([...visableArr, newGuess]);
-          let bankSetAmount = 500 * letterQuantity;
+          let bankSetAmount = spinAmount * letterQuantity;
           await setbank(bank + bankSetAmount);
           alert("Letter Revealed");
         } else {
@@ -169,7 +149,14 @@ function Dashboard() {
       alert("Letter Not Included");
     }
   };
-
+  const getSpinDeg = () => {
+    let spinDeg = Math.floor(Math.random() * 360 + 3600);
+    let actual = Math.floor((spinDeg / 180) * Math.PI);
+    setSpinDeg(actual);
+    let spinIndex = Math.floor((spinDeg - 3600) / 15);
+    setspinAmount(values[spinIndex]);
+    console.log(values[spinIndex]);
+  };
   // =============================================================================================
 
   return (
@@ -202,7 +189,16 @@ function Dashboard() {
       </div>
       {spin ? (
         <div id="spinwheel-container">
-          <SpinWheel values={values} />
+          <SpinWheel spinDeg={spinDeg} />
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              getSpinDeg();
+            }}
+          >
+            Spin Wheel
+          </button>
+
           <button
             onClick={(e) => {
               e.preventDefault();

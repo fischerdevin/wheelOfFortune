@@ -1,22 +1,26 @@
-import React, { Component } from "react";
 import * as THREE from "three";
+import React, { useEffect, useRef } from "react";
 import { FontLoader } from "three/examples/jsm/loaders/FontLoader";
 import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry";
 import font from "../Logos/chesterfieldregular1634774581.json";
 
-class SpinWheel extends Component {
-  componentDidMount() {
+const SpinWheel = (props) => {
+  const { spinDeg } = props;
+  const mountRef = useRef(null);
+  useEffect(() => {
     var scene = new THREE.Scene();
     var camera = new THREE.PerspectiveCamera(
-      75,
+      85,
       window.innerWidth / (window.innerHeight * 0.35),
       0.1,
       1000
     );
+    let current = mountRef.current;
 
-    var renderer = new THREE.WebGLRenderer();
+    var renderer = new THREE.WebGLRenderer({ alpha: true });
+    renderer.setClearColor(0x000000, 0);
     renderer.setSize(window.innerWidth, window.innerHeight * 0.35);
-    this.mount.appendChild(renderer.domElement);
+    current.appendChild(renderer.domElement);
 
     const light = new THREE.DirectionalLight({
       color: "white",
@@ -143,28 +147,41 @@ class SpinWheel extends Component {
 
     createWheel();
 
-    wheel.rotation.x = 0;
+    // wheel.rotation.x = -0.25;
 
     scene.add(wheel);
 
-    // camera.position.z = 20;
-    camera.position.z = 30;
-    camera.position.y = -25;
+    camera.position.z = 50;
+    // camera.position.z = 60;
+    camera.position.y = 0;
     camera.rotation.z = 3.1;
+    let totalRotation = 0;
 
     var animate = function () {
       requestAnimationFrame(animate);
 
-      wheel.rotation.z -= 0.004;
-
+      if (totalRotation > spinDeg) {
+        wheel.rotation.z += 0;
+        totalRotation += 0;
+      } else {
+        wheel.rotation.z += 0.08;
+        totalRotation += 0.08;
+      }
       renderer.render(scene, camera);
     };
+    let onWindowResize = function () {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    };
+
+    window.addEventListener("resize", onWindowResize, false);
 
     animate();
-  }
-  render() {
-    return <div id="wheel-canvas" ref={(ref) => (this.mount = ref)} />;
-  }
-}
+
+    return () => current.removeChild(renderer.domElement);
+  }, [spinDeg]);
+  return <div ref={mountRef}></div>;
+};
 
 export default SpinWheel;
