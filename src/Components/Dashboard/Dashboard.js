@@ -149,11 +149,16 @@ function Dashboard() {
       alert("Letter Not Included");
     }
   };
+  let fifthteen = [
+    7.5, 22.5, 37.5, 52.5, 67.5, 82.5, 97.5, 112.5, 127.5, 142.5, 157.5, 172.5,
+    187.5, 202.5, 217.5, 232.5, 247.5, 262.5, 277.5, 292.5, 307.5, 322.5, 337.5,
+    352.5,
+  ];
   const getSpinDeg = () => {
-    let spinDeg = Math.floor(Math.random() * 360 + 1800);
+    let spinDeg = fifthteen[Math.floor(Math.random() * fifthteen.length)] + 720;
     let actual = (spinDeg / 180) * Math.PI;
     setSpinDeg(actual);
-    let spinIndex = Math.floor((spinDeg - 1800) / 15);
+    let spinIndex = Math.floor((spinDeg - 720) / 15);
     console.log(spinIndex);
     setspinAmount(values[spinIndex]);
     console.log(values[spinIndex]);

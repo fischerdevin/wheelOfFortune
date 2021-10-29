@@ -149,12 +149,38 @@ const SpinWheel = (props) => {
 
     wheel.rotation.z += Math.PI;
 
-    scene.add(wheel);
+    const arrowGroup = new THREE.Group();
+    function arrow() {
+      let arrowPoint = new THREE.Shape();
+      arrowPoint.moveTo(0, 0);
+      arrowPoint.lineTo(length, width);
+      arrowPoint.lineTo(length, -width);
+      arrowPoint.lineTo(0, 0);
 
-    camera.position.z = 50;
-    // camera.position.z = 60;
-    camera.position.y = 0;
-    camera.rotation.z = 3.1;
+      const extrudeSettings = {
+        steps: 2,
+        depth: 1,
+      };
+
+      const geometry = new THREE.ExtrudeGeometry(arrowPoint, extrudeSettings);
+      const material = new THREE.MeshStandardMaterial({ color: "black" });
+      const arrowMesh = new THREE.Mesh(geometry, material);
+
+      arrowGroup.add(arrowMesh);
+      return arrowGroup;
+    }
+    arrowGroup.position.y = -30;
+    arrowGroup.position.x = -2.5;
+    arrowGroup.rotation.z = -1.5708;
+
+    arrow();
+
+    scene.add(wheel, arrowGroup);
+
+    // camera.position.z = 50;
+    camera.position.z = 20;
+    camera.position.y = -20;
+    camera.rotation.z = 3.14159;
     let totalRotation = 0;
 
     var animate = function () {
