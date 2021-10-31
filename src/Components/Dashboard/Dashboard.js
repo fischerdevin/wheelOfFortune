@@ -141,12 +141,24 @@ function Dashboard() {
           alert("Letter Revealed");
         } else {
           alert("Not Enough To Buy A Vowel");
+          setTimeout(() => {
+            setSpinDeg(0);
+            setSpin(true);
+          }, 1000);
         }
       } else {
         alert("Already Chosen");
+        setTimeout(() => {
+          setspinAmount(0);
+          setSpin(true);
+        }, 1000);
       }
     } else {
       alert("Letter Not Included");
+      setTimeout(() => {
+        setspinAmount(0);
+        setSpin(true);
+      }, 1000);
     }
   };
   let fifthteen = [
@@ -157,11 +169,14 @@ function Dashboard() {
   const getSpinDeg = () => {
     let spinDeg = fifthteen[Math.floor(Math.random() * fifthteen.length)] + 720;
     let actual = (spinDeg / 180) * Math.PI;
-    setSpinDeg(actual);
     let spinIndex = Math.floor((spinDeg - 720) / 15);
-    console.log(spinIndex);
+    setSpinDeg(actual);
     setspinAmount(values[spinIndex]);
-    console.log(values[spinIndex]);
+
+    // setTimeout(() => {
+    //   setSpin(false);
+    //   setSpinDeg(0);
+    // }, 7000);
   };
   // =============================================================================================
 

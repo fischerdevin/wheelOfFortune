@@ -17,3 +17,9 @@ Create an Application where users create an account and can play a Wheel of Fort
 
 - Landing Page has animated logo.
 - Extra Css animations.
+
+### **Todo:**
+
+- Get free play to work (500 per const and free vowels)
+- Get bankruptcy to work
+- Alpha btns need to stay blacked out until phrase is done.

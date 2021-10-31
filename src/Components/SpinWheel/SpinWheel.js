@@ -11,7 +11,7 @@ const SpinWheel = (props) => {
     var scene = new THREE.Scene();
     var camera = new THREE.PerspectiveCamera(
       85,
-      window.innerWidth / (window.innerHeight * 0.35),
+      (window.innerWidth * 0.95) / (window.innerHeight * 0.35),
       0.1,
       1000
     );
@@ -19,8 +19,15 @@ const SpinWheel = (props) => {
 
     var renderer = new THREE.WebGLRenderer({ alpha: true });
     renderer.setClearColor(0x000000, 0);
-    renderer.setSize(window.innerWidth, window.innerHeight * 0.35);
+    renderer.setSize(window.innerWidth * 0.95, window.innerHeight * 0.35);
     current.appendChild(renderer.domElement);
+
+    function onWindowResize() {
+      camera.aspect = (window.innerWidth * 0.95) / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth * 0.95, window.innerHeight);
+    }
+    window.addEventListener("resize", onWindowResize);
 
     const light = new THREE.DirectionalLight({
       color: "white",
@@ -36,7 +43,7 @@ const SpinWheel = (props) => {
     const width = 2.10644 * 2;
     let loader = new FontLoader();
     let newFont = loader.parse(font);
-    //  0xffdd02
+
     const colors = [
       0xffffff, 0xf96026, 0xc493cb, 0xfda0b2, 0x029781, 0xfe9625, 0x151110,
       0xb3afa3, 0x009984, 0xfde101, 0xf36118, 0x5dbcea, 0xfd8b06, 0xa469bd,
@@ -76,15 +83,15 @@ const SpinWheel = (props) => {
       const numberGeometry = new TextGeometry(word, {
         font: newFont,
         size: size,
-        height: 0.5,
+        height: 0.1,
         bevelEnabled: true,
-        bevelThickness: 0.3,
+        bevelThickness: 0.1,
         bevelSize: 0.1,
-        bevelSegments: 8,
+        bevelSegments: 3,
       });
 
       const mesh = new THREE.Mesh(numberGeometry, [
-        new THREE.MeshStandardMaterial({ color: 0x000000 }),
+        new THREE.MeshStandardMaterial({ color: 0x0a0f0d }),
         new THREE.MeshStandardMaterial({ color: 0xffffff }),
       ]);
       return mesh;
@@ -100,7 +107,7 @@ const SpinWheel = (props) => {
 
       const extrudeSettings = {
         steps: 2,
-        depth: 4,
+        depth: 3,
       };
 
       const geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
@@ -153,34 +160,37 @@ const SpinWheel = (props) => {
     function arrow() {
       let arrowPoint = new THREE.Shape();
       arrowPoint.moveTo(0, 0);
-      arrowPoint.lineTo(length, width);
-      arrowPoint.lineTo(length, -width);
+      arrowPoint.lineTo(length * 0.15, width * 0.5);
+      arrowPoint.lineTo(length * 0.15, -width * 0.5);
       arrowPoint.lineTo(0, 0);
 
       const extrudeSettings = {
         steps: 2,
-        depth: 1,
+        depth: 2,
       };
 
       const geometry = new THREE.ExtrudeGeometry(arrowPoint, extrudeSettings);
-      const material = new THREE.MeshStandardMaterial({ color: "black" });
-      const arrowMesh = new THREE.Mesh(geometry, material);
+
+      const arrowMesh = new THREE.Mesh(geometry, [
+        new THREE.MeshStandardMaterial({ color: 0xffc300 }),
+        new THREE.MeshStandardMaterial({ color: 0x000000 }),
+      ]);
 
       arrowGroup.add(arrowMesh);
       return arrowGroup;
     }
-    arrowGroup.position.y = -30;
-    arrowGroup.position.x = -2.5;
+    arrowGroup.position.y = -28;
+    arrowGroup.position.x = -1.5;
+    arrowGroup.position.z = 4;
     arrowGroup.rotation.z = -1.5708;
 
     arrow();
 
     scene.add(wheel, arrowGroup);
 
-    // camera.position.z = 50;
     camera.position.z = 20;
     camera.position.y = -20;
-    camera.rotation.z = 3.14159;
+    camera.rotation.z = 3.08923;
     let totalRotation = 0;
 
     var animate = function () {
@@ -190,18 +200,11 @@ const SpinWheel = (props) => {
         wheel.rotation.z -= 0;
         totalRotation += 0;
       } else {
-        wheel.rotation.z -= 0.08;
-        totalRotation += 0.08;
+        wheel.rotation.z -= 0.06;
+        totalRotation += 0.06;
       }
       renderer.render(scene, camera);
     };
-    let onWindowResize = function () {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    };
-
-    window.addEventListener("resize", onWindowResize, false);
 
     animate();
 

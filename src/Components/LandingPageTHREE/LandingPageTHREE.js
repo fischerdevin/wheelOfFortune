@@ -19,10 +19,8 @@ export default class LandingPageTHREE extends Component {
     );
     // INIT CAMERA
     camera.position.x = 0;
-    camera.position.y = 16;
+    camera.position.y = 0;
     camera.position.z = 95;
-
-    camera.rotation.x = -0.1;
 
     // RENDERER
     var renderer = new THREE.WebGLRenderer({ alpha: true });
@@ -79,7 +77,7 @@ export default class LandingPageTHREE extends Component {
       0x038c20, 0xa10c3c, 0xa224f4,
     ];
     const textMesh = new THREE.Mesh(text, [
-      new THREE.MeshPhongMaterial({ color: 0xffffff }),
+      new THREE.MeshStandardMaterial({ color: 0xffffff }),
       new THREE.MeshPhongMaterial({ color: 0x000000 }),
     ]);
     textMesh.castShadow = true;
@@ -143,8 +141,8 @@ export default class LandingPageTHREE extends Component {
 
       // camera.rotation.z = Math.cos(now * 0.5);
 
-      // wedgeGroup.rotation.z += 0.009;
-      // wedgeGrouptwo.rotation.z -= 0.0099;
+      wedgeGroup.rotation.z += 0.009;
+      wedgeGrouptwo.rotation.z -= 0.0099;
 
       requestAnimationFrame(animate);
       renderer.render(scene, camera);
