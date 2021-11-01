@@ -1,17 +1,21 @@
 import React from "react";
 
-export default function Rules() {
-  const { rules, setRules } = props;
+export default function Rules(props) {
+  const { setRules } = props;
 
   return (
-    <div id="rules">
-      <h1>Hi</h1>
-      <button
-        onClick={(e) => {
-          e.preventDefault();
-          setRules(false);
-        }}
-      ></button>
+    <div>
+      <div id="rules-container">
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            setRules(false);
+          }}
+        >
+          Back To Game{" "}
+        </button>
+        <h1>Hi</h1>
+      </div>
     </div>
   );
 }

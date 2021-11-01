@@ -14,7 +14,7 @@ export default function Setting(props) {
         <button onClick={logout} id="logoutBtn">
           Logout
         </button>
-        {rule ? (
+        {!rule ? (
           <button
             id="logoutBtn"
             onClick={(e) => {
@@ -25,7 +25,7 @@ export default function Setting(props) {
             Rules{" "}
           </button>
         ) : (
-          <Rules setRules={setRules} rule={rule} />
+          <Rules setRules={setRules} />
         )}
         <button
           id="backBtn"

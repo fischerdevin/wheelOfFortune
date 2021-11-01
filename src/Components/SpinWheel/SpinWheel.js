@@ -29,29 +29,22 @@ const SpinWheel = (props) => {
     }
     window.addEventListener("resize", onWindowResize);
 
-    const light = new THREE.DirectionalLight({
-      color: "white",
-      intensity: 0.5,
-    });
-    light.position.set(20, 50, 20);
+    const ambientLight = new THREE.AmbientLight("white", 1);
 
-    const ambientLight = new THREE.AmbientLight("white", 0.5);
-
-    scene.add(light, ambientLight);
+    scene.add(ambientLight);
 
     const length = 16 * 2;
     const width = 2.10644 * 2;
     let loader = new FontLoader();
     let newFont = loader.parse(font);
-
     const colors = [
-      0xffffff, 0xf96026, 0xc493cb, 0xfda0b2, 0x029781, 0xfe9625, 0x151110,
-      0xb3afa3, 0x009984, 0xfde101, 0xf36118, 0x5dbcea, 0xfd8b06, 0xa469bd,
-      0xfadc00, 0xf78da7, 0xfa4e1e, 0x49b8ef, 0x048c76, 0xf3a5b5, 0x1b1716,
-      0xbb87d1, 0x397340, 0x80c8f0,
+      0xfddf11, 0xfd7135, 0xba81c6, 0xfba7b3, 0x32b196, 0xf9982e, 0x000000,
+      0xbfbab0, 0x32b196, 0xfddf11, 0xfd7135, 0x40b4e8, 0xf9982e, 0xba81c6,
+      0xfddf11, 0xfba7b3, 0xfd7135, 0x40b4e8, 0x32b196, 0xfba7b3, 0x000000,
+      0xba81c6, 0x356c3e, 0x40b4e8,
     ];
     const values = [
-      "LOSE TURN",
+      "$900",
       "$800",
       "$500",
       "$650",
@@ -122,20 +115,20 @@ const SpinWheel = (props) => {
       let numsArr = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
       for (let i = 0; i < valueArr.length; i++) {
         if (valueArr[i] === "$") {
-          size = width / 1.6;
+          size = width / 1.7;
           spacing = 5 - i * size;
         } else if (numsArr.includes(valueArr[i])) {
-          size = width * 0.75;
-          spacing = 5 - i * size * 1.3;
+          size = width * 0.8;
+          spacing = 5 - i * size * 1.2;
         } else {
-          size = width / 2;
-          spacing = 5.5 - i * size * 1.1;
+          size = width / 2.25;
+          spacing = 5.5 - i * size * 1.2;
         }
-
         let word = numberTriangle(valueArr[i], size);
-        word.position.z = 4.5;
+
+        word.position.z = 3.5;
         word.position.y += spacing + 23;
-        word.position.x -= 1.5;
+        word.position.x -= 1.85;
         triangleGroup.add(word);
       }
 
@@ -180,7 +173,7 @@ const SpinWheel = (props) => {
       return arrowGroup;
     }
     arrowGroup.position.y = -28;
-    arrowGroup.position.x = -1.5;
+    arrowGroup.position.x = 0.4;
     arrowGroup.position.z = 4;
     arrowGroup.rotation.z = -1.5708;
 
@@ -190,8 +183,8 @@ const SpinWheel = (props) => {
 
     camera.position.z = 20;
     camera.position.y = -20;
-    camera.rotation.z = 3.08923;
-    let totalRotation = 0;
+    camera.rotation.z = 3.14159;
+    let totalRotation = 0.1309;
 
     var animate = function () {
       requestAnimationFrame(animate);

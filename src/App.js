@@ -11,6 +11,7 @@ import "./Components/SpinWheel/SpinWheel.css";
 import "./Components/Setting/Setting.css";
 import "./Components/Solve/Solve.css";
 import "./Components/LandingPage/LandingPage.css";
+import "./Components/Setting/Rules/Rules.css";
 
 function App() {
   return (

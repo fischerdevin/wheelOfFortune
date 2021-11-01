@@ -53,8 +53,8 @@ function Dashboard() {
   });
 
   const values = [
-    -1, 800, 500, 650, 500, 900, 0, 5000, 500, 600, 700, 600, 650, 500, 700,
-    500, 600, 550, 500, 600, 0, 650, 1, 700,
+    900, 800, 500, 650, 500, 900, -1, 5000, 500, 600, 700, 600, 650, 500, 700,
+    500, 600, 550, 500, 600, -1, 650, 1, 700,
   ];
 
   const history = useHistory();
@@ -168,6 +168,7 @@ function Dashboard() {
           alert("Letter Revealed");
         } else {
           alert("Not Enough To Buy A Vowel");
+          setClick({ ...click, newGuess: false });
           setTimeout(() => {
             setSpinDeg(0);
             setSpin(true);
@@ -181,11 +182,17 @@ function Dashboard() {
         }, 1000);
       }
     } else {
-      alert("Letter Not Included");
-      setTimeout(() => {
-        setspinAmount(0);
-        setSpin(true);
-      }, 1000);
+      if (newGuess.match(vowels) && bank >= 250) {
+        alert("Vowel Not Included");
+        setbank(bank - 250);
+      } else {
+        alert("Letter Not Included");
+
+        setTimeout(() => {
+          setspinAmount(0);
+          setSpin(true);
+        }, 1000);
+      }
     }
   };
   let fifthteen = [
@@ -195,15 +202,24 @@ function Dashboard() {
   ];
   const getSpinDeg = () => {
     let spinDeg = fifthteen[Math.floor(Math.random() * fifthteen.length)] + 720;
+
     let actual = (spinDeg / 180) * Math.PI;
     let spinIndex = Math.floor((spinDeg - 720) / 15);
     setSpinDeg(actual);
     setspinAmount(values[spinIndex]);
+    console.log(spinIndex);
 
-    setTimeout(() => {
-      setSpin(false);
-      setSpinDeg(0);
-    }, 10000);
+    if (spinIndex === 6 || spinIndex === 20) {
+      setTimeout(() => {
+        setbank(0);
+        setSpinDeg(0);
+      }, 10000);
+    } else {
+      setTimeout(() => {
+        setSpin(false);
+        setSpinDeg(0);
+      }, 10000);
+    }
   };
   // =============================================================================================
 
