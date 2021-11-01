@@ -16,13 +16,13 @@ function Dashboard() {
   const [spin, setSpin] = useState(true);
   const [solve, setSolve] = useState(false);
   const [name, setName] = useState("");
-  const [visableArr, setVisableArr] = useState([]);
-  const [gameObject, setgameObject] = useState({});
-  const [splitWord, setsplitWord] = useState([]);
   const [solveValue, setsolveValue] = useState("");
+  const [visableArr, setVisableArr] = useState([]);
+  const [splitWord, setsplitWord] = useState([]);
   const [bank, setbank] = useState(0);
   const [spinDeg, setSpinDeg] = useState(0);
   const [spinAmount, setspinAmount] = useState(0);
+  const [gameObject, setgameObject] = useState({});
   const [click, setClick] = useState({
     A: true,
     B: true,
@@ -200,10 +200,10 @@ function Dashboard() {
     setSpinDeg(actual);
     setspinAmount(values[spinIndex]);
 
-    // setTimeout(() => {
-    //   setSpin(false);
-    //   setSpinDeg(0);
-    // }, 7000);
+    setTimeout(() => {
+      setSpin(false);
+      setSpinDeg(0);
+    }, 10000);
   };
   // =============================================================================================
 
@@ -246,15 +246,6 @@ function Dashboard() {
           >
             Spin Wheel
           </button>
-
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              setSpin(false);
-            }}
-          >
-            Switch
-          </button>
         </div>
       ) : (
         <div id="keyboard-container">
@@ -278,14 +269,6 @@ function Dashboard() {
               SoLVE THE PHRASE
             </button>
           )}
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              setSpin(true);
-            }}
-          >
-            Switch
-          </button>
         </div>
       )}
       <Bank name={name} bank={bank} />
