@@ -23,6 +23,34 @@ function Dashboard() {
   const [bank, setbank] = useState(0);
   const [spinDeg, setSpinDeg] = useState(0);
   const [spinAmount, setspinAmount] = useState(0);
+  const [click, setClick] = useState({
+    A: true,
+    B: true,
+    C: true,
+    D: true,
+    E: true,
+    F: true,
+    G: true,
+    H: true,
+    I: true,
+    J: true,
+    K: true,
+    L: true,
+    M: true,
+    N: true,
+    O: true,
+    P: true,
+    Q: true,
+    R: true,
+    S: true,
+    T: true,
+    U: true,
+    V: true,
+    W: true,
+    X: true,
+    Y: true,
+    Z: true,
+  });
 
   const values = [
     -1, 800, 500, 650, 500, 900, 0, 5000, 500, 600, 700, 600, 650, 500, 700,
@@ -121,7 +149,6 @@ function Dashboard() {
 
   // function to get key value
   const guessValue = async (e) => {
-    // e.preventDefault();
     let newGuess = e.target.value;
     let vowels = /[AEIOU]/g;
     let consonant = /[BCDFGHJKLMNPQRSTVWXYZ]/g;
@@ -231,7 +258,7 @@ function Dashboard() {
         </div>
       ) : (
         <div id="keyboard-container">
-          <Keyboard guessValue={guessValue} />
+          <Keyboard guessValue={guessValue} click={click} setClick={setClick} />
           {solve ? (
             <div>
               <Solve
