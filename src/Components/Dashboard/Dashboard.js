@@ -129,8 +129,10 @@ function Dashboard() {
       setSpin(true);
     } else {
       setbank(bank + 2000);
-      setSpin(true);
       alert("Correct");
+      setTimeout(() => {
+        resetGame();
+      }, 3000);
     }
   };
 
@@ -187,9 +189,12 @@ function Dashboard() {
       if (newGuess.match(vowels) && bank >= 250) {
         alert("Vowel Not Included");
         setbank(bank - 250);
+        setTimeout(() => {
+          setspinAmount(0);
+          setSpin(true);
+        }, 1000);
       } else {
         alert("Letter Not Included");
-
         setTimeout(() => {
           setspinAmount(0);
           setSpin(true);
