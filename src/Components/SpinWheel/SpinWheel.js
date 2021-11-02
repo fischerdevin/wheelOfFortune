@@ -7,9 +7,10 @@ import font from "../Logos/chesterfieldregular1634774581.json";
 const SpinWheel = (props) => {
   const { spinDeg } = props;
   const mountRef = useRef(null);
+
   useEffect(() => {
-    var scene = new THREE.Scene();
-    var camera = new THREE.PerspectiveCamera(
+    let scene = new THREE.Scene();
+    let camera = new THREE.PerspectiveCamera(
       85,
       (window.innerWidth * 0.75) / (window.innerHeight * 0.5),
       0.1,
@@ -17,7 +18,7 @@ const SpinWheel = (props) => {
     );
     let current = mountRef.current;
 
-    var renderer = new THREE.WebGLRenderer({ alpha: true });
+    let renderer = new THREE.WebGLRenderer({ alpha: true });
     renderer.setClearColor(0x000000, 0);
     renderer.setSize(window.innerWidth * 0.75, window.innerHeight * 0.5);
     current.appendChild(renderer.domElement);
@@ -188,7 +189,7 @@ const SpinWheel = (props) => {
     camera.rotation.z = 3.14159;
     let totalRotation = 0.1309;
 
-    var animate = function () {
+    let animate = function () {
       requestAnimationFrame(animate);
 
       const now = Date.now() / 1000;

@@ -23,6 +23,7 @@ function Dashboard() {
   const [bank, setbank] = useState(0);
   const [spinDeg, setSpinDeg] = useState(0);
   const [spinAmount, setspinAmount] = useState(0);
+  const [vowelCost, setVowelCost] = useState(-250);
   const [gameObject, setgameObject] = useState({});
   const [click, setClick] = useState({
     A: true,
@@ -56,7 +57,7 @@ function Dashboard() {
 
   const values = [
     900, 800, 500, 650, 500, 900, -1, 5000, 500, 600, 700, 600, 650, 500, 700,
-    500, 600, 550, 500, 600, -1, 650, 1, 700,
+    500, 600, 550, 500, 600, -1, 650, 500, 700,
   ];
 
   const history = useHistory();
@@ -119,21 +120,19 @@ function Dashboard() {
   }, []);
 
   // ==========================================================================================
-  // this function runs randomGamePhrase a prop thats from firebase.js
   const getRandomPhrase = async () => {
     const newWord = await randomGamePhrase();
     setgameObject(newWord);
     setsplitWord(newWord.word.split(""));
   };
 
-  // Counts each letter in the gameWord
   let InvolvedLetters = splitWord.reduce((a, e) => {
     a[e] = a[e] ? a[e] + 1 : 1;
     return a;
   }, {});
 
   // =============================================================================================
-  // solve screen function
+  // Solve Functions
   const switchScreen = () => {
     setSolvePage(!solvePage);
   };
@@ -148,7 +147,6 @@ function Dashboard() {
     check = check.replace(/\s{2,}/g, " ");
     let finalPhrase = gameObject.word;
     finalPhrase = finalPhrase.toLowerCase();
-
     if (solveValue === null || check !== finalPhrase) {
       alert("Time to spin again");
       setSolvePage(false);
@@ -158,7 +156,7 @@ function Dashboard() {
       alert("Correct");
       setTimeout(() => {
         resetGame();
-      }, 3000);
+      }, 1500);
     }
   };
 
@@ -173,12 +171,13 @@ function Dashboard() {
     if (checkKey.length > 0) {
       if (checkKey === checkValue) {
         alert("Phrase Done");
-        resetGame();
+        setTimeout(() => {
+          resetGame();
+        }, 1500);
       }
     }
   }, [checkKey, checkValue, resetGame]);
 
-  // function to get key value
   const guessValue = async (e) => {
     let newGuess = e.target.value;
     let vowels = /[AEIOU]/g;
@@ -189,13 +188,12 @@ function Dashboard() {
       if (!visableArr.includes(newGuess)) {
         if (newGuess.match(vowels) && bank >= 250) {
           await setVisableArr([...visableArr, newGuess]);
-          let bankSetAmount = -250;
-          await setbank(bank + bankSetAmount);
+          setbank(bank + vowelCost);
           alert("Letter Revealed");
         } else if (newGuess.match(consonant)) {
           await setVisableArr([...visableArr, newGuess]);
           let bankSetAmount = spinAmount * letterQuantity;
-          await setbank(bank + bankSetAmount);
+          setbank(bank + bankSetAmount);
           alert("Letter Revealed");
         } else {
           alert("Not Enough To Buy A Vowel");
@@ -215,7 +213,7 @@ function Dashboard() {
     } else {
       if (newGuess.match(vowels) && bank >= 250) {
         alert("Vowel Not Included");
-        setbank(bank - 250);
+        setbank(bank + vowelCost);
         setTimeout(() => {
           setspinAmount(0);
           setSpin(true);
@@ -230,33 +228,39 @@ function Dashboard() {
     }
   };
 
+  // ====================================================================================
+  // Spin Function
   let fifthteen = [
     7.5, 22.5, 37.5, 52.5, 67.5, 82.5, 97.5, 112.5, 127.5, 142.5, 157.5, 172.5,
     187.5, 202.5, 217.5, 232.5, 247.5, 262.5, 277.5, 292.5, 307.5, 322.5, 337.5,
     352.5,
   ];
   const getSpinDeg = () => {
-    let spinDeg = fifthteen[Math.floor(Math.random() * fifthteen.length)] + 540;
+    let spinDeg = fifthteen[Math.floor(Math.random() * fifthteen.length)] + 720;
     let actual = (spinDeg / 180) * Math.PI;
-    let spinIndex = Math.floor((spinDeg - 540) / 15);
+    let spinIndex = Math.floor((spinDeg - 720) / 15);
     setSpinDeg(actual);
     setspinAmount(values[spinIndex]);
-
     if (spinIndex === 6 || spinIndex === 20) {
       setTimeout(() => {
         setbank(0);
         setSpinDeg(0);
-      }, 10000);
-    } else {
+      }, 6500);
+    } else if (spinIndex === 22) {
       setTimeout(() => {
         setSpin(false);
         setSpinDeg(0);
-      }, 10000);
+        setVowelCost(0);
+      }, 6500);
+    } else {
+      setTimeout(() => {
+        setVowelCost(-250);
+        setSpin(false);
+        setSpinDeg(0);
+      }, 6500);
     }
   };
-
   // =============================================================================================
-
   return (
     <div className="page">
       {!rule ? null : <Rules setRules={setRules} />}
