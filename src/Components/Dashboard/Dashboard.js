@@ -20,6 +20,7 @@ function Dashboard() {
   const [spinBtn, setspinBtn] = useState(true);
   const [name, setName] = useState("");
   const [solveValue, setsolveValue] = useState("");
+  const [message, setmessage] = useState("");
   const [visableArr, setVisableArr] = useState([]);
   const [splitWord, setsplitWord] = useState([]);
   const [bank, setbank] = useState(0);
@@ -153,12 +154,12 @@ function Dashboard() {
     let finalPhrase = gameObject.word;
     finalPhrase = finalPhrase.toLowerCase();
     if (solveValue === null || check !== finalPhrase) {
-      alert("Time to spin again");
+      setmessage("Time to spin again");
       setSolvePage(false);
       setSpin(true);
     } else {
       setbank(bank + 2000);
-      alert("Correct");
+      setmessage("Correct");
       setTimeout(() => {
         resetGame();
       }, 1500);
@@ -175,7 +176,7 @@ function Dashboard() {
   useEffect(() => {
     if (checkKey.length > 0) {
       if (checkKey === checkValue) {
-        alert("Phrase Done");
+        setmessage("Phrase Done");
         setTimeout(() => {
           resetGame();
         }, 1500);
@@ -194,38 +195,49 @@ function Dashboard() {
         if (newGuess.match(vowels) && bank >= 250) {
           await setVisableArr([...visableArr, newGuess]);
           setbank(bank + vowelCost);
-          alert("Letter Revealed");
+          setmessage("Letter Revealed");
+          setTimeout(() => {
+            setmessage("");
+          }, 1000);
         } else if (newGuess.match(consonant)) {
           await setVisableArr([...visableArr, newGuess]);
           let bankSetAmount = spinAmount * letterQuantity;
           setbank(bank + bankSetAmount);
-          alert("Letter Revealed");
+          setmessage("Letter Revealed");
+          setTimeout(() => {
+            setmessage("");
+          }, 1000);
         } else {
-          alert("Not Enough To Buy A Vowel");
+          setmessage("Not Enough To Buy A Vowel");
           setClick({ ...click, newGuess: false });
           setTimeout(() => {
+            setmessage("");
+
             setSpinDeg(0);
             setSpin(true);
           }, 1000);
         }
       } else {
-        alert("Already Chosen");
+        setmessage("Already Chosen");
         setTimeout(() => {
+          setmessage("");
           setspinAmount(0);
           setSpin(true);
         }, 1000);
       }
     } else {
       if (newGuess.match(vowels) && bank >= 250) {
-        alert("Vowel Not Included");
+        setmessage("Vowel Not Included");
         setbank(bank + vowelCost);
         setTimeout(() => {
+          setmessage("");
           setspinAmount(0);
           setSpin(true);
         }, 1000);
       } else {
-        alert("Letter Not Included");
+        setmessage("Letter Not Included");
         setTimeout(() => {
+          setmessage("");
           setspinAmount(0);
           setSpin(true);
         }, 1000);
@@ -297,6 +309,9 @@ function Dashboard() {
           visableArr={visableArr}
         />
       </div>
+
+      {spin ? null : <div id="message">{message}</div>}
+
       {rule ? null : (
         <>
           {spin ? (
@@ -305,10 +320,13 @@ function Dashboard() {
               {spinBtn ? (
                 <button
                   id="spinBtn"
+                  className="spinBtn green"
                   onClick={(e) => {
                     e.preventDefault();
-                    setspinBtn(false);
                     getSpinDeg();
+                    setTimeout(() => {
+                      setspinBtn(false);
+                    }, 500);
                   }}
                 >
                   Spin Wheel
