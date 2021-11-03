@@ -16,6 +16,8 @@ function Dashboard() {
   const [setting, setSetting] = useState(true);
   const [spin, setSpin] = useState(true);
   const [solvePage, setSolvePage] = useState(false);
+  const [rule, setRules] = useState(false);
+  const [spinBtn, setspinBtn] = useState(true);
   const [name, setName] = useState("");
   const [solveValue, setsolveValue] = useState("");
   const [visableArr, setVisableArr] = useState([]);
@@ -53,7 +55,6 @@ function Dashboard() {
     Y: true,
     Z: true,
   });
-  const [rule, setRules] = useState(false);
 
   const values = [
     900, 800, 500, 650, 500, 900, -1, 5000, 500, 600, 700, 600, 650, 500, 700,
@@ -84,6 +85,7 @@ function Dashboard() {
     resetGame();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, loading]);
+
   const resetGame = useCallback(() => {
     getRandomPhrase();
     setVisableArr([]);
@@ -243,17 +245,20 @@ function Dashboard() {
     setspinAmount(values[spinIndex]);
     if (spinIndex === 6 || spinIndex === 20) {
       setTimeout(() => {
+        setspinBtn(true);
         setbank(0);
         setSpinDeg(0);
       }, 6500);
     } else if (spinIndex === 22) {
       setTimeout(() => {
+        setspinBtn(true);
         setSpin(false);
         setSpinDeg(0);
         setVowelCost(0);
       }, 6500);
     } else {
       setTimeout(() => {
+        setspinBtn(true);
         setVowelCost(-250);
         setSpin(false);
         setSpinDeg(0);
@@ -263,7 +268,7 @@ function Dashboard() {
   // =============================================================================================
   return (
     <div className="page">
-      {!rule ? null : <Rules setRules={setRules} />}
+      {rule ? <Rules setRules={setRules} /> : null}
       <div className="header">
         <div id="title-container">
           <h1 id="title">WHEEL OF FoRTUNE</h1>
@@ -289,42 +294,53 @@ function Dashboard() {
           visableArr={visableArr}
         />
       </div>
-      {spin ? (
-        <div id="spinwheel-container">
-          <SpinWheel spinDeg={spinDeg} />
-          <button
-            id="spinBtn"
-            onClick={(e) => {
-              e.preventDefault();
-              getSpinDeg();
-            }}
-          >
-            Spin Wheel
-          </button>
-        </div>
-      ) : (
-        <div id="keyboard-container">
-          <Keyboard guessValue={guessValue} click={click} setClick={setClick} />
-          {solvePage ? (
-            <div>
-              <Solve
-                switchScreen={switchScreen}
-                solveFn={solveFn}
-                rightOrWrongSolve={rightOrWrongSolve}
-              />
+      {rule ? null : (
+        <>
+          {spin ? (
+            <div id="spinwheel-container">
+              <SpinWheel spinDeg={spinDeg} />
+              {spinBtn ? (
+                <button
+                  id="spinBtn"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setspinBtn(false);
+                    getSpinDeg();
+                  }}
+                >
+                  Spin Wheel
+                </button>
+              ) : null}
             </div>
           ) : (
-            <button
-              id="solveBtn-keyboard"
-              onClick={(e) => {
-                e.preventDefault();
-                setSolvePage(true);
-              }}
-            >
-              SoLVE THE PHRASE
-            </button>
+            <div id="keyboard-container">
+              <Keyboard
+                guessValue={guessValue}
+                click={click}
+                setClick={setClick}
+              />
+              {solvePage ? (
+                <div>
+                  <Solve
+                    switchScreen={switchScreen}
+                    solveFn={solveFn}
+                    rightOrWrongSolve={rightOrWrongSolve}
+                  />
+                </div>
+              ) : (
+                <button
+                  id="solveBtn-keyboard"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setSolvePage(true);
+                  }}
+                >
+                  SoLVE THE PHRASE
+                </button>
+              )}
+            </div>
           )}
-        </div>
+        </>
       )}
       {rule ? null : <Bank name={name} bank={bank} />}
     </div>

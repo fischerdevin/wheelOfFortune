@@ -5,16 +5,17 @@
 
 body {
   font-family: "wheeloffortune", sans-serif;
-  background: linear-gradient(180deg, #2d20a9, #362071, #6b4075, #ac6ca1);
-  background-size: 300% 300%;
+  background: linear-gradient(0deg, #5fd0e7, #90e0ef, #ade8f4, #caf0f8);
+  background-size: 200% 200%;
   animation: gradient 7s ease infinite;
 }
 * {
   font-family: "wheeloffortune", sans-serif;
   letter-spacing: 0.08rem;
 }
+
 .header {
-  background-color: crimson;
+  background: linear-gradient(180deg, #245235, #1ea57a);
   border-bottom: black 2px solid;
   height: 10vh;
   width: 100%;
