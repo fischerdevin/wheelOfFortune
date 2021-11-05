@@ -151,10 +151,16 @@ function Dashboard() {
   const rightOrWrongSolve = (e) => {
     e.preventDefault();
     let noPunc = solveValue.match(/[a-zA-Z ]/g).join("");
+    console.log(noPunc);
     let check = noPunc.toLowerCase();
+    console.log(check, "1");
     check = check.replace(/\s{2,}/g, " ");
-    let finalPhrase = gameObject.word;
+    console.log(check, "2");
+    let phrase = gameObject.word;
+    let finalPhrase = phrase.match(/[a-zA-Z ]/g).join("");
+
     finalPhrase = finalPhrase.toLowerCase();
+    console.log(finalPhrase, "final");
     if (solveValue === null || check !== finalPhrase) {
       setmessage("Time to spin again");
       setTimeout(() => {
