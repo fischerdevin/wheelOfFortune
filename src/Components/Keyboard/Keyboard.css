@@ -25,11 +25,10 @@
   border-radius: 3px;
   font-size: 1.5em;
 }
-#bank-div-spacer1 {
-  width: 35vw;
-}
-#bank-div-spacer2 {
-  width: 18vw;
+#keyboard-solve-bank {
+  width: 100vw;
+  display: flex;
+  justify-content: flex-end;
 }
 #solve-bank {
   display: flex;
