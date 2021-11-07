@@ -3,7 +3,8 @@ import Letter from "../Letter.js/Letter";
 
 export default function GameBoard(props) {
   let { gameObject, splitWord, visableArr } = props;
-  let type = gameObject.type;
+  let t = gameObject.type;
+  let type = t;
 
   return (
     <div id="game-board">
