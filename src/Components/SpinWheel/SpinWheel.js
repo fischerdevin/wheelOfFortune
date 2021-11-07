@@ -12,7 +12,7 @@ const SpinWheel = (props) => {
     let scene = new THREE.Scene();
     let camera = new THREE.PerspectiveCamera(
       85,
-      (window.innerWidth * 0.75) / (window.innerHeight * 0.5),
+      (window.innerWidth * 0.7) / (window.innerHeight * 0.5),
       0.1,
       1000
     );
@@ -20,13 +20,13 @@ const SpinWheel = (props) => {
 
     let renderer = new THREE.WebGLRenderer({ alpha: true });
     renderer.setClearColor(0x000000, 0);
-    renderer.setSize(window.innerWidth * 0.75, window.innerHeight * 0.5);
+    renderer.setSize(window.innerWidth * 0.7, window.innerHeight * 0.5);
     current.appendChild(renderer.domElement);
 
     function onWindowResize() {
-      camera.aspect = (window.innerWidth * 0.75) / (window.innerHeight * 0.5);
+      camera.aspect = (window.innerWidth * 0.7) / (window.innerHeight * 0.5);
       camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth * 0.75, window.innerHeight * 0.5);
+      renderer.setSize(window.innerWidth * 0.7, window.innerHeight * 0.5);
     }
     window.addEventListener("resize", onWindowResize);
 
