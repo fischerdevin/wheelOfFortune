@@ -506,8 +506,76 @@ li {
   padding: 0.25rem;
 }
 /* ===================================================== */
-@media screen and (max-width: 1600px) {
+@media screen and (min-width: 2559px) {
+  #title {
+    font-size: 3vw;
+    -webkit-text-stroke: 3px black;
+  }
+  #dollarSign {
+    font-size: 3vw;
+  }
+  #phraseType {
+    margin-top: 0.5vw;
+    font-size: 2.5vw;
+  }
+  #board-container {
+    padding: 0.5vw;
+  }
+  .keysBtn {
+    width: 3.75vw;
+    height: 3.75vw;
+    font-size: 2.25vw;
+  }
+  .displayNone {
+    width: 3.75vw;
+    height: 3.75vw;
+    font-size: 2.25vw;
+  }
+  #solveBtn-keyboard {
+    width: 25vw;
+    font-size: 1.75vw;
+  }
+  .gameboard-container {
+    height: 30vh;
+  }
+  .tile-border {
+    width: 3vw;
+    height: 4vw;
+  }
+  .visable {
+    font-size: 3vw;
+  }
+  #message {
+    height: 9vh;
+    font-size: 1.75vw;
+  }
+  #messageHolder {
+    height: 10.1vh;
+  }
+  #solve-title {
+    font-size: 3vw;
+  }
+  #solveInput {
+    height: auto;
+  }
+  #solve-msg {
+    font-size: 3vw;
+  }
+  #bank-container {
+    justify-content: space-around;
+    height: 15vh;
+  }
+  #username {
+    height: 5vh;
+  }
+  #solveBank {
+    height: 17vh;
+  }
   #start-gameBtn {
-    font-size: ;
+    margin-bottom: 6vw;
+    width: 18vw;
+    font-size: 2.05vw;
+    letter-spacing: 0.1vw;
+    -webkit-text-stroke: black 4px;
   }
 }
