@@ -148,7 +148,8 @@ function Dashboard() {
     setsolveValue(e.target.value);
   };
 
-  const rightOrWrongSolve = () => {
+  const rightOrWrongSolve = (e) => {
+    e.preventDefault();
     if (solveValue.length <= 0) {
       return;
     } else {
