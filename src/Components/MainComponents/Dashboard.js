@@ -151,7 +151,11 @@ function Dashboard() {
   const rightOrWrongSolve = (e) => {
     e.preventDefault();
     if (solveValue.length <= 0) {
-      return;
+      setmessage("No Value Entered");
+      setTimeout(() => {
+        setmessage("");
+        return;
+      }, 1500);
     } else {
       let noPunc = solveValue.match(/[a-zA-Z ]/g).join("");
       console.log(noPunc);
