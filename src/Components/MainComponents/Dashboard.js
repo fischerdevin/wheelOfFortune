@@ -240,7 +240,6 @@ function Dashboard() {
           setClick({ ...click, newGuess: false });
           setTimeout(() => {
             setmessage("");
-
             setSpinDeg(0);
             setSpin(true);
           }, 1000);
@@ -260,6 +259,14 @@ function Dashboard() {
         setTimeout(() => {
           setmessage("");
           setspinAmount(0);
+          setSpin(true);
+        }, 1000);
+      } else if (newGuess.match(vowels) && bank < 250) {
+        setmessage("Not Enough To Buy A Vowel");
+        setClick({ ...click, newGuess: false });
+        setTimeout(() => {
+          setmessage("");
+          setSpinDeg(0);
           setSpin(true);
         }, 1000);
       } else {
