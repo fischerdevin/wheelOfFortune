@@ -14,12 +14,12 @@ Wheel of Fortune is a fun solo player game. Users can login to their accounts an
 
 ## Screenshots
 
-- Landing Page ![](src\Components\Logos\ReadmePhoto\Homepage.PNG)
-- Login ![](src\Components\Logos\ReadmePhoto\Login.PNG)
-- Rules Page ![](src\Components\Logos\ReadmePhoto\Rules.PNG)'
-- Three.js Wheel ![](src\Components\Logos\ReadmePhoto\Wheel.PNG)
-- KeyBoard Guessing ![](src\Components\Logos\ReadmePhoto\Keyboard.PNG)
-- Solve Page ![](src\Components\Logos\ReadmePhoto\SolvePage.PNG)
+- Landing Page ![](ReadmePhoto/Homepage.PNG)
+- Login ![](ReadmePhoto/Login.PNG)
+- Rules Page ![](ReadmePhoto/Rules.PNG)'
+- Three.js Wheel ![](ReadmePhoto/Wheel.PNG)
+- KeyBoard Guessing ![](ReadmePhoto/Keyboard.PNG)
+- Solve Page ![](ReadmePhoto/SolvePage.PNG)
 
 ## Setup
 
