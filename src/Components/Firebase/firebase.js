@@ -4,13 +4,13 @@ import "firebase/compat/firestore";
 import "firebase/compat/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBt58OULQzlxBGg6XEtNHNpVkVVdzgzLUo",
-  authDomain: "capstone-wof.firebaseapp.com",
-  projectId: "capstone-wof",
-  storageBucket: "capstone-wof.appspot.com",
-  messagingSenderId: "67875037461",
-  appId: "1:67875037461:web:cc4a7f88482226e789c91c",
-  measurementId: "G-M9G1L3P5LL",
+  apiKey: "AIzaSyCciItPDA3afM0qhHDokmredlSRHm8Tp5Q",
+  authDomain: "wheeloffortune-3212.firebaseapp.com",
+  projectId: "wheeloffortune-3212",
+  storageBucket: "wheeloffortune-3212.firebasestorage.app",
+  messagingSenderId: "571749587217",
+  appId: "1:571749587217:web:6a9426b7fc1df9e47cd4b0",
+  measurementId: "G-JK59RP9VV4"
 };
 
 firebase.initializeApp(firebaseConfig);

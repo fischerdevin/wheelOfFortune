@@ -23,6 +23,8 @@ function Login(props) {
     if (user) history.replace("/wheeloffortune");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, loading]);
+
+  
   return (
     <div className="style">
       <div className="container">
